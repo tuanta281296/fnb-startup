@@ -26,5 +26,13 @@ namespace Repository.Command
             // ... and then we call the ApiResult
             return await districts.ToListAsync();
         }
+
+        public async Task<ActionResult<IEnumerable<PO_ProductType>>> GetListProductType(ApplicationDbContext _context)
+        {
+            // first we perform the filtering...
+            var productType = _context.PO_ProductType;
+            // ... and then we call the ApiResult
+            return await productType.ToListAsync();
+        }
     }
 }
