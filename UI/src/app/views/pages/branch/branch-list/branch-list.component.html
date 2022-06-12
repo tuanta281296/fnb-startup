@@ -1,0 +1,66 @@
+<dx-load-panel [position]="loadPanelPosition" [visible]="isLoading">
+</dx-load-panel>
+<div id="data-grid-demo">
+    <dx-data-grid
+        #gridContainer  
+        keyExpr="id"
+        id="gridContainer"
+        [dataSource]="dataSource | async"
+        [showBorders]="true"
+        (onSaving)="onSaving($event)"
+        [columnHidingEnabled]="true"
+    >
+        <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+        <dxo-paging [pageSize]="10"> </dxo-paging>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-search-panel [visible]="true"></dxo-search-panel> -->
+        <dxo-pager
+            [visible]="true"
+            [allowedPageSizes]="allowedPageSizes"
+            [displayMode]="displayMode"
+            [showPageSizeSelector]= "showPageSizeSelector"
+            [showInfo]="showInfo"
+            [showNavigationButtons]="showNavButtons"
+        >
+        </dxo-pager> 
+        <dxo-editing
+            mode="cell"
+            [allowUpdating]="true"
+            [allowAdding]="true"
+            [allowDeleting]="true"
+            [(changes)]="changes"
+            [(editRowKey)]="editRowKey"
+        >
+        </dxo-editing>
+        <dxi-column dataField="index" dataType="number" width="50" [allowEditing]="false" caption="" [allowHeaderFiltering]="false">
+        </dxi-column>
+        <dxi-column dataField="branchID">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>
+        <dxi-column dataField="branchName">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>   
+        <dxi-column dataField="address">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>
+        <dxi-column
+            dataField="city"
+            caption="City"
+            [setCellValue]="setStateValue"
+        >
+            <dxo-lookup [dataSource]="cities | async" valueExpr="id" displayExpr="descr">
+            </dxo-lookup>
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>
+        <dxi-column dataField="disctrict" caption="District">
+            <dxo-lookup
+                [dataSource]="getFilterCities"
+                valueExpr="id"
+                displayExpr="descr"
+            >
+            </dxo-lookup>
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>
+    </dx-data-grid>
+</div>
+  

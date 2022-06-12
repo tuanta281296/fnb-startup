@@ -1,0 +1,12 @@
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\bin\Release\netcoreapp3.1\Repository.deps.json
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\bin\Release\netcoreapp3.1\Repository.dll
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\bin\Release\netcoreapp3.1\Repository.pdb
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\bin\Release\netcoreapp3.1\Entities.dll
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\bin\Release\netcoreapp3.1\Entities.pdb
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\obj\Release\netcoreapp3.1\Repository.csprojAssemblyReference.cache
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\obj\Release\netcoreapp3.1\Repository.AssemblyInfoInputs.cache
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\obj\Release\netcoreapp3.1\Repository.AssemblyInfo.cs
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\obj\Release\netcoreapp3.1\Repository.csproj.CoreCompileInputs.cache
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\obj\Release\netcoreapp3.1\Repository.csproj.CopyComplete
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\obj\Release\netcoreapp3.1\Repository.dll
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\obj\Release\netcoreapp3.1\Repository.pdb

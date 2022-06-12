@@ -1,0 +1,54 @@
+2022-04-12 20:55:49.1217 INFO Fetching all the Students from the storage
+2022-04-12 20:55:49.1534 INFO Returning System.Collections.Generic.List`1[FNBStarup.Data.Model.OM_UsersRole] userId.
+2022-04-12 20:55:51.2915 INFO Fetching all the Students from the storage
+2022-04-12 20:55:51.2915 INFO Returning System.Collections.Generic.List`1[FNBStarup.Data.Model.OM_UsersRole] userId.
+2022-04-12 20:56:18.8097 INFO Fetching all the Students from the storage
+2022-04-12 20:56:19.3198 INFO Returning System.Collections.Generic.List`1[FNBStarup.Data.Model.OM_UsersRole] userId.
+2022-04-12 20:57:39.9826 INFO Fetching all the Students from the storage
+2022-04-12 20:57:40.2816 INFO Returning System.Collections.Generic.List`1[FNBStarup.Data.Model.OM_UsersRole] userId.
+2022-04-12 20:58:13.7097 INFO Fetching all the Students from the storage
+2022-04-12 20:58:14.1743 INFO Returning System.Collections.Generic.List`1[FNBStarup.Data.Model.OM_UsersRole] userId.
+2022-04-12 21:01:18.7652 INFO Fetching all the Students from the storage
+2022-04-12 21:01:18.7929 INFO Returning System.Collections.Generic.List`1[FNBStarup.Data.Model.OM_UsersRole] userId.
+2022-04-12 21:01:18.9585 ERROR Something went wrong: System.ArgumentException: Invalid type parameter 'Microsoft.AspNetCore.Mvc.IActionResult' specified for 'ActionResult<T>'.
+   at Microsoft.AspNetCore.Mvc.ActionResult`1..ctor(ActionResult result)
+   at Microsoft.AspNetCore.Mvc.ActionResult`1.op_Implicit(ActionResult result)
+   at FNBStarup.Controllers.RolesController.GetRoleUsers() in P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\FNBStarup\Controllers\RolesController.cs:line 41
+2022-04-12 21:01:39.9034 INFO Fetching all the Students from the storage
+2022-04-12 21:01:40.6035 INFO Returning System.Collections.Generic.List`1[FNBStarup.Data.Model.OM_UsersRole] userId.
+2022-04-12 21:01:57.7591 ERROR Something went wrong: System.ArgumentException: Invalid type parameter 'Microsoft.AspNetCore.Mvc.IActionResult' specified for 'ActionResult<T>'.
+   at Microsoft.AspNetCore.Mvc.ActionResult`1..ctor(ActionResult result)
+   at Microsoft.AspNetCore.Mvc.ActionResult`1.op_Implicit(ActionResult result)
+   at FNBStarup.Controllers.RolesController.GetRoleUsers() in P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\FNBStarup\Controllers\RolesController.cs:line 41
+2022-04-12 21:02:06.0043 INFO Fetching all the Students from the storage
+2022-04-12 21:02:06.2783 INFO Returning System.Collections.Generic.List`1[FNBStarup.Data.Model.OM_UsersRole] userId.
+2022-04-12 21:02:38.1070 INFO Fetching all the Students from the storage
+2022-04-12 21:02:38.6594 INFO Returning System.Collections.Generic.List`1[FNBStarup.Data.Model.OM_UsersRole] userId.
+2022-04-12 21:18:51.9047 ERROR Something went wrong: System.AccessViolationException: Violation Exception while accessing the resource.
+   at FNBStarup.Controllers.RolesController.GetRoleUsers() in P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\FNBStarup\Controllers\RolesController.cs:line 39
+2022-04-12 21:52:01.5831 ERROR Something went wrong: System.InvalidOperationException: A second operation was started on this context before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   at FNBStarup.Commands.UsersCommand.SaveRoleUser(OM_Users user, ApplicationDbContext _context) in P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\FNBStarup\Command\UsersCommand.cs:line 191
+   at FNBStarup.Commands.UsersCommand.PutUsers(OM_Users user, ApplicationDbContext _context) in P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\FNBStarup\Command\UsersCommand.cs:line 118
+   at FNBStarup.Controllers.UsersController.PutUsers(OM_Users users) in P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\FNBStarup\Controllers\UsersController.cs:line 96
+   at lambda_method10(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at FNBStartup.Extensions.ExceptionMiddleware.InvokeAsync(HttpContext httpContext) in P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\FNBStarup\Extensions\CustomExceptionMiddleware.cs:line 25

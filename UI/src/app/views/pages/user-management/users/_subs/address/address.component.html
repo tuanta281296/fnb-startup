@@ -1,0 +1,57 @@
+<!--begin::Form-->
+<form [formGroup]="addressForm" class="kt-form kt-form--group-seperator-dashed">
+
+	<kt-alert *ngIf="hasFormErrors" type="warn" [showCloseButton]="true" [duration]="10000" (close)="onAlertClose($event)">
+		Oh snap! Change a few things up and try submitting again.
+	</kt-alert>
+	<div class="kt-form__section kt-form__section--first">
+		<div class="form-group kt-form__group row">
+			<div class="col-lg-4 kt-margin-bottom-20-mobile">
+				<mat-form-field class="mat-form-field-fluid">
+					<mat-select placeholder="Enter City" formControlName="city" (selectionChange)="eventChangedCity($event)" required>
+						<mat-option *ngFor="let index of cities | async" [value]="index.id" >{{index.descr}} </mat-option>
+					</mat-select>
+					<mat-error>City is
+						<strong>required</strong>
+					</mat-error>
+					<mat-hint align="start">
+						<strong>City</strong>
+					</mat-hint>
+				</mat-form-field>
+
+				<mat-form-field class="mat-form-field-fluid">
+					<mat-select placeholder="Enter District" formControlName="district" required>
+						<mat-option *ngFor="let index of districtsAfterFilter" [value]="index.id">{{index.descr}}</mat-option>
+					</mat-select>
+					<mat-error>District is
+						<strong>required</strong>
+					</mat-error>
+					<mat-hint align="start">
+						<strong>District</strong>
+					</mat-hint>
+				</mat-form-field>
+
+				<mat-form-field class="mat-form-field-fluid">
+					<input matInput placeholder="Enter Ward" formControlName="ward" />
+					<mat-error>Ward is
+						<strong>required</strong>
+					</mat-error>
+					<mat-hint align="start">Please enter
+						<strong>Ward</strong>
+					</mat-hint>
+				</mat-form-field>
+
+				<mat-form-field class="mat-form-field-fluid">
+					<input matInput placeholder="Enter Address Line" formControlName="addressLine" />
+					<mat-error>Address Line is
+						<strong>required</strong>
+					</mat-error>
+					<mat-hint align="start">Please enter
+						<strong>Address Line</strong>
+					</mat-hint>
+				</mat-form-field>
+			</div>
+		</div>
+	</div>
+</form>
+<!--end::Form-->

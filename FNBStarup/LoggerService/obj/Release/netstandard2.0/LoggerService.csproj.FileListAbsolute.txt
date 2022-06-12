@@ -1,0 +1,9 @@
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\LoggerService\bin\Release\netstandard2.0\LoggerService.deps.json
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\LoggerService\bin\Release\netstandard2.0\LoggerService.dll
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\LoggerService\bin\Release\netstandard2.0\LoggerService.pdb
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\LoggerService\obj\Release\netstandard2.0\LoggerService.csprojAssemblyReference.cache
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\LoggerService\obj\Release\netstandard2.0\LoggerService.AssemblyInfoInputs.cache
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\LoggerService\obj\Release\netstandard2.0\LoggerService.AssemblyInfo.cs
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\LoggerService\obj\Release\netstandard2.0\LoggerService.csproj.CoreCompileInputs.cache
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\LoggerService\obj\Release\netstandard2.0\LoggerService.dll
+P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\LoggerService\obj\Release\netstandard2.0\LoggerService.pdb
