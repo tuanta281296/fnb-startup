@@ -85,3 +85,15 @@ P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\FNBStarup\bin\Debug\ne
 P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\FNBStarup\obj\Debug\net5.0\FNBStartup.MvcApplicationPartsAssemblyInfo.cs
 P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\FNBStarup\bin\Debug\net5.0\Repository.dll
 P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\FNBStarup\bin\Debug\net5.0\Repository.pdb
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\FNBStarup\obj\Debug\net5.0\FNBStartup.dll
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\FNBStarup\obj\Debug\net5.0\ref\FNBStartup.dll
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\FNBStarup\obj\Debug\net5.0\FNBStartup.pdb
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\FNBStarup\obj\Debug\net5.0\FNBStartup.csprojAssemblyReference.cache
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\FNBStarup\obj\Debug\net5.0\FNBStartup.GeneratedMSBuildEditorConfig.editorconfig
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\FNBStarup\obj\Debug\net5.0\FNBStartup.AssemblyInfoInputs.cache
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\FNBStarup\obj\Debug\net5.0\FNBStartup.AssemblyInfo.cs
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\FNBStarup\obj\Debug\net5.0\FNBStartup.csproj.CoreCompileInputs.cache
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\FNBStarup\obj\Debug\net5.0\FNBStartup.MvcApplicationPartsAssemblyInfo.cs
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\FNBStarup\obj\Debug\net5.0\FNBStartup.MvcApplicationPartsAssemblyInfo.cache
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\FNBStarup\obj\Debug\net5.0\FNBStartup.RazorAssemblyInfo.cache
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\FNBStarup\obj\Debug\net5.0\FNBStartup.RazorAssemblyInfo.cs

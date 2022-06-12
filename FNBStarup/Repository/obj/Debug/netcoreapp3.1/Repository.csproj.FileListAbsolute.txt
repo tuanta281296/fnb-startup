@@ -10,3 +10,15 @@ P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\obj\Debug\n
 P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\obj\Debug\netcoreapp3.1\Repository.csproj.CopyComplete
 P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\obj\Debug\netcoreapp3.1\Repository.dll
 P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Repository\obj\Debug\netcoreapp3.1\Repository.pdb
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Repository\bin\Debug\netcoreapp3.1\Repository.deps.json
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Repository\bin\Debug\netcoreapp3.1\Repository.dll
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Repository\bin\Debug\netcoreapp3.1\Repository.pdb
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Repository\bin\Debug\netcoreapp3.1\Entities.dll
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Repository\bin\Debug\netcoreapp3.1\Entities.pdb
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Repository\obj\Debug\netcoreapp3.1\Repository.csprojAssemblyReference.cache
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Repository\obj\Debug\netcoreapp3.1\Repository.AssemblyInfoInputs.cache
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Repository\obj\Debug\netcoreapp3.1\Repository.AssemblyInfo.cs
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Repository\obj\Debug\netcoreapp3.1\Repository.csproj.CoreCompileInputs.cache
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Repository\obj\Debug\netcoreapp3.1\Repository.csproj.CopyComplete
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Repository\obj\Debug\netcoreapp3.1\Repository.dll
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Repository\obj\Debug\netcoreapp3.1\Repository.pdb

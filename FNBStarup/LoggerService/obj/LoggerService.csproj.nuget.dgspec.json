@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\LoggerService\\LoggerService.csproj": {}
+    "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\LoggerService\\LoggerService.csproj": {}
   },
   "projects": {
-    "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\LoggerService\\LoggerService.csproj": {
+    "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\LoggerService\\LoggerService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\LoggerService\\LoggerService.csproj",
+        "projectUniqueName": "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\LoggerService\\LoggerService.csproj",
         "projectName": "LoggerService",
-        "projectPath": "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\LoggerService\\LoggerService.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\LoggerService\\obj\\",
+        "projectPath": "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\LoggerService\\LoggerService.csproj",
+        "packagesPath": "C:\\Users\\tuan.trananh\\.nuget\\packages\\",
+        "outputPath": "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\LoggerService\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tuan.trananh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,7 +64,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

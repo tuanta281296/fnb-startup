@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\Repository\\Repository.csproj": {}
+    "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\Repository\\Repository.csproj": {}
   },
   "projects": {
-    "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\Entities\\Entities.csproj": {
+    "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\Entities\\Entities.csproj",
+        "projectUniqueName": "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\Entities\\Entities.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\Entities\\obj\\",
+        "projectPath": "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\Entities\\Entities.csproj",
+        "packagesPath": "C:\\Users\\tuan.trananh\\.nuget\\packages\\",
+        "outputPath": "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\Entities\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tuan.trananh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -90,21 +93,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\Repository\\Repository.csproj": {
+    "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\Repository\\Repository.csproj",
+        "projectUniqueName": "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\Repository\\Repository.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\Repository\\obj\\",
+        "projectPath": "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\tuan.trananh\\.nuget\\packages\\",
+        "outputPath": "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\Repository\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tuan.trananh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -118,8 +124,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\Entities\\Entities.csproj": {
-                "projectPath": "P:\\Technical\\TrainingAngular\\ManageSystemStarup\\FNBStarup\\Entities\\Entities.csproj"
+              "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\Entities\\Entities.csproj": {
+                "projectPath": "D:\\FNBStartup_Project\\ManageSystemStarup\\FNBStarup\\Entities\\Entities.csproj"
               }
             }
           }
@@ -148,7 +154,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

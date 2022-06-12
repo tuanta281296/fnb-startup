@@ -44,7 +44,7 @@ namespace FNBStartup.Controllers
         public async Task<IActionResult> GetProductType()
         {
             var producttype = await _masterDataCommand.GetListDistricts(_context);
-            return Ok(districts.Value);
+            return Ok(producttype.Value);
         }
     }
 }

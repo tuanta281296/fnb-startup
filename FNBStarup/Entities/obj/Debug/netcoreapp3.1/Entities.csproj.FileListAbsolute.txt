@@ -10,3 +10,15 @@ P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Entities\bin\Debug\net
 P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Entities\obj\Debug\netcoreapp3.1\Entities.dll
 P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Entities\obj\Debug\netcoreapp3.1\Entities.pdb
 P:\Technical\TrainingAngular\ManageSystemStarup\FNBStarup\Entities\obj\Debug\netcoreapp3.1\Entities.genruntimeconfig.cache
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Entities\bin\Debug\netcoreapp3.1\Entities.deps.json
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Entities\bin\Debug\netcoreapp3.1\Entities.runtimeconfig.json
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Entities\bin\Debug\netcoreapp3.1\Entities.runtimeconfig.dev.json
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Entities\bin\Debug\netcoreapp3.1\Entities.dll
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Entities\bin\Debug\netcoreapp3.1\Entities.pdb
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Entities\obj\Debug\netcoreapp3.1\Entities.csprojAssemblyReference.cache
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Entities\obj\Debug\netcoreapp3.1\Entities.AssemblyInfoInputs.cache
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Entities\obj\Debug\netcoreapp3.1\Entities.AssemblyInfo.cs
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Entities\obj\Debug\netcoreapp3.1\Entities.csproj.CoreCompileInputs.cache
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Entities\obj\Debug\netcoreapp3.1\Entities.dll
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Entities\obj\Debug\netcoreapp3.1\Entities.pdb
+D:\FNBStartup_Project\ManageSystemStarup\FNBStarup\Entities\obj\Debug\netcoreapp3.1\Entities.genruntimeconfig.cache
