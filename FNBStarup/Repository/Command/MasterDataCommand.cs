@@ -34,5 +34,13 @@ namespace Repository.Command
             // ... and then we call the ApiResult
             return await productType.ToListAsync();
         }
+
+        public async Task<ActionResult<IEnumerable<SI_Unit>>> GetPurchaseUnit(ApplicationDbContext _context)
+        {
+            // first we perform the filtering...
+            var unit = _context.SI_Unit;
+            // ... and then we call the ApiResult
+            return await unit.ToListAsync();
+        }
     }
 }

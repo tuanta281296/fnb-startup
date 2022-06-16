@@ -1,24 +1,52 @@
 <kt-portlet>
-	<kt-portlet-header [sticky]="true" [title]="getComponentTitle()" [class]="'kt-portlet__head--lg'" [viewLoading$]="loading$">
+	<kt-portlet-header
+		[sticky]="true"
+		[title]="getComponentTitle()"
+		[class]="'kt-portlet__head--lg'"
+		[viewLoading$]="loading$"
+	>
 		<ng-container ktPortletTools>
-			<a (click)="goBackWithoutId()" class="btn btn-secondary kt-margin-r-10"  mat-raised-button matTooltip="Back to the products list">
+			<a
+				(click)="goBackWithoutId()"
+				class="btn btn-secondary kt-margin-r-10"
+				mat-raised-button
+				matTooltip="Back to the products list"
+			>
 				<i class="la la-arrow-left"></i>
 				<span class="kt-hidden-mobile">Back</span>
 			</a>
-			<a href="javascript:;" class="btn btn-secondary kt-margin-r-10" (click)="reset()" [disabled]="selectedTab !== 0" mat-raised-button matTooltip="Reset changes">
+			<a
+				href="javascript:;"
+				class="btn btn-secondary kt-margin-r-10"
+				(click)="reset()"
+				[disabled]="selectedTab !== 0"
+				mat-raised-button
+				matTooltip="Reset changes"
+			>
 				<i class="la la-cog"></i>
 				<span class="kt-hidden-mobile">Reset</span>
 			</a>
-			<a href="javascript:;" class="btn btn-primary kt-margin-r-10" color="primary" (click)="onSumbit(false)" mat-raised-button matTooltip="Save & Continue">
+			<a
+				href="javascript:;"
+				class="btn btn-primary kt-margin-r-10"
+				color="primary"
+				(click)="onSumbit(false)"
+				mat-raised-button
+				matTooltip="Save & Continue"
+			>
 				<span class="kt-hidden-mobile">Save</span>
 			</a>
 			<button mat-icon-button [matMenuTriggerFor]="menu" color="primary">
 				<mat-icon>more_vert</mat-icon>
 			</button>
 			<mat-menu #menu="matMenu">
-				<button mat-menu-item color="primary" (click)="onSumbit(true)">Save & Exit</button>
+				<button mat-menu-item color="primary" (click)="onSumbit(true)">
+					Save & Exit
+				</button>
 				<button mat-menu-item color="primary">Save & Duplicate</button>
-				<button mat-menu-item color="primary" (click)="onSumbit(false)">Save & Continue</button>
+				<button mat-menu-item color="primary" (click)="onSumbit(false)">
+					Save & Continue
+				</button>
 			</mat-menu>
 		</ng-container>
 	</kt-portlet-header>
@@ -28,147 +56,266 @@
 				<ng-template matTabContent>
 					<div *ngIf="product">
 						<!--begin::Form-->
-						<form [formGroup]="productForm" class="kt-form kt-form--group-seperator-dashed">
-
-							<kt-alert *ngIf="hasFormErrors" type="warn" [showCloseButton]="true" [duration]="10000" (close)="onAlertClose($event)">
-								Oh snap! Change a few things up and try submitting again.
+						<form
+							[formGroup]="productForm"
+							class="kt-form kt-form--group-seperator-dashed"
+						>
+							<kt-alert
+								*ngIf="hasFormErrors"
+								type="warn"
+								[showCloseButton]="true"
+								[duration]="10000"
+								(close)="onAlertClose($event)"
+							>
+								Oh snap! Change a few things up and try
+								submitting again.
 							</kt-alert>
 
-							<div class="kt-form__section kt-form__section--first">
-								<div class="kt-form__group">
-									<div class="row">
+							<div
+								class="kt-form__section kt-form__section--first"
+							>
+								<div class="form-group kt-form__group row">
+									<div
+										class="col-lg-4 kt-margin-bottom-20-mobile"
+									>
+										<div
+											class="image-input image-input-outline image-input-circle"
+											id="kt_image_3"
+										>
+											<img
+												mat-card-image
+												src="{{ imagePath }}?d={{
+													clock_tick
+												}}"
+												alt="Photo of a Product"
+											/>
+											<div class="input-file-type">
+												<input
+													type="file"
+													class="file-input"
+													accept=".png, .jpg, .jpeg"
+													(change)="
+														onFileSelected($event)
+													"
+													#fileUpload
+												/>
 
-										<div class="col-md-4 kt-margin-bottom-10-mobile">
-											<mat-form-field class="mat-form-field-fluid">
-												<input matInput placeholder="Enter Model" formControlName="model">
-												<mat-error>
-													Model is
-													<strong>required</strong>
-												</mat-error>
-												<mat-hint align="start">Please enter
-													<strong>Model</strong>
-												</mat-hint>
-											</mat-form-field>
-										</div>
-										<div class="col-md-4 kt-margin-bottom-10-mobile">
-											<mat-form-field class="mat-form-field-fluid">
-												<input matInput placeholder="Enter Manufacture" formControlName="manufacture" [matAutocomplete]="manuf">
-												<mat-autocomplete #manuf="matAutocomplete">
-													<mat-option *ngFor="let manufacture of filteredManufactures | async" [value]="manufacture">
-														{{ manufacture }}
-													</mat-option>
-												</mat-autocomplete>
-												<mat-error>
-													Manufacture is
-													<strong>required</strong>
-												</mat-error>
-												<mat-hint align="start">Please enter
-													<strong>Manufacture</strong>
-												</mat-hint>
-											</mat-form-field>
-										</div>
-										<div class="col-md-4 kt-margin-bottom-10-mobile">
-											<mat-form-field class="mat-form-field-fluid">
-												<mat-select placeholder="Enter Model year" formControlName="modelYear">
-													<mat-option value="{{year}}" *ngFor="let year of availableYears;">{{year}}</mat-option>
-												</mat-select>
-												<mat-error>
-													Model year
-													<strong>required</strong>
-												</mat-error>
-												<mat-hint align="start">Please enter
-													<strong>Model year</strong>
-												</mat-hint>
-											</mat-form-field>
+												<div class="file-upload">
+													{{
+														fileName ||
+															"No file uploaded yet."
+													}}
+													<button
+														mat-mini-fab
+														color="primary"
+														class="upload-btn"
+														(click)="
+															fileUpload.click()
+														"
+													>
+														<mat-icon
+															>attach_file</mat-icon
+														>
+													</button>
+												</div>
+
+												<div class="progress">
+													<mat-progress-bar
+														class="progress-bar"
+														mode="determinate"
+														[value]="uploadProgress"
+														*ngIf="uploadProgress"
+													>
+													</mat-progress-bar>
+													<mat-icon
+														class="cancel-upload"
+														(click)="cancelUpload()"
+														*ngIf="uploadProgress"
+														>delete_forever</mat-icon
+													>
+												</div>
+
+												<input
+													type="hidden"
+													name="profile_avatar_remove"
+												/>
+											</div>
+
+											<span
+												class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+												data-action="cancel"
+												data-toggle="tooltip"
+												title="Cancel avatar"
+											>
+												<i
+													class="ki ki-bold-close icon-xs text-muted"
+												></i>
+											</span>
 										</div>
 									</div>
-								</div>
+									<div
+										class="col-md-8 kt-margin-bottom-10-mobile"
+									>
+										<div class="row">
+											<div class="col-md-6">
+												<mat-form-field
+													class="mat-form-field-fluid"
+												>
+													<mat-select
+														placeholder="Enter Product Type"
+														formControlName="productTypeID"
+													>
+														<mat-option
+															*ngFor="
+																let index of productType
+																	| async
+															"
+															[value]="index.id"
+															>{{
+																index.descr
+															}}</mat-option
+														>
+													</mat-select>
+													<mat-error>
+														Model is
+														<strong
+															>required</strong
+														>
+													</mat-error>
+													<mat-hint align="start"
+														>Please enter
+														<strong>Model</strong>
+													</mat-hint>
+												</mat-form-field>
+											</div>
+											<div class="col-md-6">
+												<mat-form-field
+													class="mat-form-field-fluid"
+												>
+													<input
+														matInput
+														placeholder="Enter ProductID"
+														formControlName="productID"
+													/>
+													<mat-error>
+														ProductID is
+														<strong
+															>required</strong
+														>
+													</mat-error>
+													<mat-hint align="start"
+														>Please enter
+														<strong
+															>ProductID</strong
+														>
+													</mat-hint>
+												</mat-form-field>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<mat-form-field
+													class="mat-form-field-fluid"
+												>
+													<input
+														matInput
+														placeholder="Enter Product Name"
+														formControlName="productName"
+													/>
+													<mat-error>
+														Product Name is
+														<strong
+															>required</strong
+														>
+													</mat-error>
+													<mat-hint align="start"
+														>Please enter
+														<strong
+															>Product
+															Name</strong
+														>
+													</mat-hint>
+												</mat-form-field>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<mat-form-field
+													class="mat-form-field-fluid"
+												>
+													<mat-select
+														placeholder="Enter Default Unit"
+														formControlName="defaultUnit"
+													>
+														<mat-option
+															*ngFor="
+																let index of unitData
+																	| async
+															"
+															[value]="index.id"
+															>{{
+																index.unitName
+															}}</mat-option
+														>
+													</mat-select>
+													<mat-error>
+														Model is
+														<strong
+															>required</strong
+														>
+													</mat-error>
+													<mat-hint align="start"
+														>Please enter
+														<strong>Model</strong>
+													</mat-hint>
+												</mat-form-field>
 
-								<div class="kt-form__group">
-									<div class="row">
-										<div class="col-md-4 kt-margin-bottom-10-mobile">
-											<mat-form-field class="mat-form-field-fluid">
-												<input matInput placeholder="Enter Mileage" formControlName="mileage">
-												<mat-error>
-													Mileage is
-													<strong>required</strong>
-												</mat-error>
-												<mat-hint align="start">Please enter
-													<strong>Mileage</strong>
-												</mat-hint>
-											</mat-form-field>
-										</div>
-										<div class="col-md-4 kt-margin-bottom-10-mobile">
-											<mat-form-field class="mat-form-field-fluid">
-												<input matInput placeholder="Enter Color" formControlName="color" [matAutocomplete]="col">
-												<mat-autocomplete #col="matAutocomplete">
-													<mat-option *ngFor="let col of filteredColors | async" [value]="col">
-														{{ col }}
-													</mat-option>
-												</mat-autocomplete>
-												<mat-error>
-													Color
-													<strong>required</strong>
-												</mat-error>
-												<mat-hint align="start">Please enter
-													<strong>Color</strong>
-												</mat-hint>
-											</mat-form-field>
-										</div>
-										<div class="col-md-4 kt-margin-bottom-10-mobile">
-											<mat-form-field class="mat-form-field-fluid">
-												<input matInput placeholder="Enter Price" formControlName="price">
-												<span matPrefix>$&nbsp;</span>
-												<mat-error>
-													Price is
-													<strong>required</strong>
-												</mat-error>
-												<mat-hint align="start">Please enter
-													<strong>Price</strong>
-												</mat-hint>
-											</mat-form-field>
-										</div>
-									</div>
-
-								</div>
-
-								<div class="kt-form__group">
-									<div class="row">
-										<div class="col-md-4 kt-margin-bottom-10-mobile">
-											<mat-form-field class="mat-form-field-fluid">
-												<input matInput placeholder="Enter VIN code" formControlName="VINCode">
-												<mat-error>
-													VIN Code is
-													<strong>required</strong>
-												</mat-error>
-												<mat-hint align="start">Please enter
-													<strong>VIN Code</strong>
-												</mat-hint>
-											</mat-form-field>
-										</div>
-										<div class="col-md-4 kt-margin-bottom-10-mobile">
-											<div>Condition:</div>
-											<mat-radio-group formControlName="condition" class="example-radio-group">
-												<mat-radio-button class="example-radio-button" value="0">New</mat-radio-button>
-												<mat-radio-button class="example-radio-button" value="1">Used</mat-radio-button>
-											</mat-radio-group>
-										</div>
-										<div class="col-md-4">
-											<div>Status:</div>
-											<mat-radio-group formControlName="status" class="example-radio-group">
-												<mat-radio-button class="example-radio-button" value="0">Selling</mat-radio-button>
-												<mat-radio-button class="example-radio-button" value="1">Sold</mat-radio-button>
-											</mat-radio-group>
-										</div>
-									</div>
-								</div>
-
-								<div class="kt-form__group">
-									<div class="row">
-										<div class="col-md-12 kt-margin-bottom-10-mobile">
-											<mat-form-field class="mat-form-field-fluid">
-												<textarea matInput rows="7" placeholder="Enter Description" formControlName="description"></textarea>
-											</mat-form-field>
+												<div>Active:</div>
+												<mat-radio-group
+													formControlName="active"
+													class="example-radio-group"
+												>
+													<mat-radio-button
+														class="example-radio-button"
+														value="true"
+														>Selling</mat-radio-button
+													>
+													<mat-radio-button
+														class="example-radio-button"
+														value="false"
+														>Cancelled</mat-radio-button
+													>
+												</mat-radio-group>
+											</div>
+											<div class="col-md-6">
+												<mat-form-field
+													class="mat-form-field-fluid"
+												>
+													<input
+														matInput
+														placeholder="Enter Price"
+														formControlName="defaultPrice"
+														(blur)="
+															transformAmount(
+																$event
+															)
+														"
+														(focus)="
+															onFocus($event)
+														"
+													/>
+													<mat-error>
+														Price is
+														<strong
+															>required</strong
+														>
+													</mat-error>
+													<mat-hint align="start"
+														>Please enter
+														<strong>Price</strong>
+													</mat-hint>
+												</mat-form-field>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -177,16 +324,6 @@
 					</div>
 
 					<!--end::Form-->
-				</ng-template>
-			</mat-tab>
-			<mat-tab label="Product remarks" [disabled]="!product || !product.id">
-				<ng-template matTabContent>
-					<kt-remarks-list [productId$]="productId$"></kt-remarks-list>
-				</ng-template>
-			</mat-tab>
-			<mat-tab label="Product specifications" [disabled]="!product || !product.id">
-				<ng-template matTabContent>
-					<kt-specifications-list [productId$]="productId$"></kt-specifications-list>
 				</ng-template>
 			</mat-tab>
 		</mat-tab-group>

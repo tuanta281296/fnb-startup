@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Repository.Command;
+using Repository.Command.PO;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.AspNetCore.Http;
@@ -59,6 +60,7 @@ namespace FNBStarup
             services.AddScoped<IUsersCommand, UsersCommand>();
             services.AddScoped<IMasterDataCommand, MasterDataCommand>();
             services.AddScoped<IBranchCommand, BranchesCommand>();
+            services.AddScoped<IPOProductCommand, POProductCommand>();
             // Add ApplicationDbContext and SQL Server support
 
             ServiceExtensions.ConfigureIISIntegration(services);

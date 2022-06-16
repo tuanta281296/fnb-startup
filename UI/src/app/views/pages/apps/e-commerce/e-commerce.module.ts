@@ -1,22 +1,22 @@
 // Angular
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterModule, Routes } from "@angular/router";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 // Fake API Angular-in-memory
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
 // Translate Module
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule } from "@ngx-translate/core";
 // NGRX
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
 // UI
-import { PartialsModule } from '../../../partials/partials.module';
+import { PartialsModule } from "../../../partials/partials.module";
 // Core
-import { FakeApiService } from '../../../../core/_base/layout';
+import { FakeApiService } from "../../../../core/_base/layout";
 // Auth
-import { ModuleGuard } from '../../../../core/auth';
+import { ModuleGuard } from "../../../../core/auth";
 // Core => Services
 import {
 	customersReducer,
@@ -30,35 +30,36 @@ import {
 	ProductRemarksService,
 	productSpecificationsReducer,
 	ProductSpecificationEffects,
-	ProductSpecificationsService
-} from '../../../../core/e-commerce';
+	ProductSpecificationsService,
+} from "../../../../core/e-commerce";
 // Core => Utils
-import { HttpUtilsService,
+import {
+	HttpUtilsService,
 	TypesUtilsService,
 	InterceptService,
-	LayoutUtilsService
-} from '../../../../core/_base/crud';
+	LayoutUtilsService,
+} from "../../../../core/_base/crud";
 // Shared
 import {
 	ActionNotificationComponent,
 	DeleteEntityDialogComponent,
 	FetchEntityDialogComponent,
-	UpdateStatusDialogComponent
-} from '../../../partials/content/crud';
+	UpdateStatusDialogComponent,
+} from "../../../partials/content/crud";
 // Components
-import { ECommerceComponent } from './e-commerce.component';
+import { ECommerceComponent } from "./e-commerce.component";
 // Customers
-import { CustomersListComponent } from './customers/customers-list/customers-list.component';
-import { CustomerEditDialogComponent } from './customers/customer-edit/customer-edit.dialog.component';
+import { CustomersListComponent } from "./customers/customers-list/customers-list.component";
+import { CustomerEditDialogComponent } from "./customers/customer-edit/customer-edit.dialog.component";
 // Products
-import { ProductsListComponent } from './products/products-list/products-list.component';
-import { ProductEditComponent } from './products/product-edit/product-edit.component';
-import { RemarksListComponent } from './products/_subs/remarks/remarks-list/remarks-list.component';
-import { SpecificationsListComponent } from './products/_subs/specifications/specifications-list/specifications-list.component';
-import { SpecificationEditDialogComponent } from './products/_subs/specifications/specification-edit/specification-edit-dialog.component';
+import { ProductsListComponent } from "./products/products-list/products-list.component";
+import { ProductEditComponent } from "./products/product-edit/product-edit.component";
+import { RemarksListComponent } from "./products/_subs/remarks/remarks-list/remarks-list.component";
+import { SpecificationsListComponent } from "./products/_subs/specifications/specifications-list/specifications-list.component";
+import { SpecificationEditDialogComponent } from "./products/_subs/specifications/specification-edit/specification-edit-dialog.component";
 // Orders
-import { OrdersListComponent } from './orders/orders-list/orders-list.component';
-import { OrderEditComponent } from './orders/order-edit/order-edit.component';
+import { OrdersListComponent } from "./orders/orders-list/orders-list.component";
+import { OrderEditComponent } from "./orders/order-edit/order-edit.component";
 // Material
 import {
 	MatInputModule,
@@ -81,52 +82,56 @@ import {
 	MatAutocompleteModule,
 	MAT_DIALOG_DEFAULT_OPTIONS,
 	MatSnackBarModule,
-	MatTooltipModule
-} from '@angular/material';
-import { environment } from '../../../../../environments/environment';
-import { CoreModule } from '../../../../core/core.module';
-import { NgbProgressbarModule, NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
-import { NgxPermissionsModule } from 'ngx-permissions';
+	MatTooltipModule,
+} from "@angular/material";
+import { environment } from "../../../../../environments/environment";
+import { CoreModule } from "../../../../core/core.module";
+import {
+	NgbProgressbarModule,
+	NgbProgressbarConfig,
+} from "@ng-bootstrap/ng-bootstrap";
+import { NgxPermissionsModule } from "ngx-permissions";
+import { CurrencyPipe } from "@angular/common";
 
 // tslint:disable-next-line:class-name
 const routes: Routes = [
 	{
-		path: '',
+		path: "",
 		component: ECommerceComponent,
 		// canActivate: [ModuleGuard],
 		// data: { moduleName: 'ecommerce' },
 		children: [
 			{
-				path: '',
-				redirectTo: 'customers',
-				pathMatch: 'full'
+				path: "",
+				redirectTo: "customers",
+				pathMatch: "full",
 			},
 			{
-				path: 'customers',
-				component: CustomersListComponent
+				path: "customers",
+				component: CustomersListComponent,
 			},
 			{
-				path: 'orders',
-				component: OrdersListComponent
+				path: "orders",
+				component: OrdersListComponent,
 			},
 			{
-				path: 'products',
+				path: "products",
 				component: ProductsListComponent,
 			},
 			{
-				path: 'products/add',
-				component: ProductEditComponent
+				path: "products/add",
+				component: ProductEditComponent,
 			},
 			{
-				path: 'products/edit',
-				component: ProductEditComponent
+				path: "products/edit",
+				component: ProductEditComponent,
 			},
 			{
-				path: 'products/edit/:id',
-				component: ProductEditComponent
+				path: "products/edit/:id",
+				component: ProductEditComponent,
 			},
-		]
-	}
+		],
+	},
 ];
 
 @NgModule({
@@ -143,7 +148,7 @@ const routes: Routes = [
 		MatButtonModule,
 		MatMenuModule,
 		MatSelectModule,
-        MatInputModule,
+		MatInputModule,
 		MatTableModule,
 		MatAutocompleteModule,
 		MatRadioModule,
@@ -160,35 +165,40 @@ const routes: Routes = [
 		MatTabsModule,
 		MatTooltipModule,
 		NgbProgressbarModule,
-		environment.isMockEnabled ? HttpClientInMemoryWebApiModule.forFeature(FakeApiService, {
-			passThruUnknownUrl: true,
-        	dataEncapsulation: false
-		}) : [],
-		StoreModule.forFeature('products', productsReducer),
+		environment.isMockEnabled
+			? HttpClientInMemoryWebApiModule.forFeature(FakeApiService, {
+					passThruUnknownUrl: true,
+					dataEncapsulation: false,
+			  })
+			: [],
+		StoreModule.forFeature("products", productsReducer),
 		EffectsModule.forFeature([ProductEffects]),
-		StoreModule.forFeature('customers', customersReducer),
+		StoreModule.forFeature("customers", customersReducer),
 		EffectsModule.forFeature([CustomerEffects]),
-		StoreModule.forFeature('productRemarks', productRemarksReducer),
+		StoreModule.forFeature("productRemarks", productRemarksReducer),
 		EffectsModule.forFeature([ProductRemarkEffects]),
-		StoreModule.forFeature('productSpecifications', productSpecificationsReducer),
+		StoreModule.forFeature(
+			"productSpecifications",
+			productSpecificationsReducer
+		),
 		EffectsModule.forFeature([ProductSpecificationEffects]),
 	],
 	providers: [
 		ModuleGuard,
 		InterceptService,
-      	{
-        	provide: HTTP_INTERCEPTORS,
-       	 	useClass: InterceptService,
-        	multi: true
-      	},
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: InterceptService,
+			multi: true,
+		},
 		{
 			provide: MAT_DIALOG_DEFAULT_OPTIONS,
 			useValue: {
 				hasBackdrop: true,
-				panelClass: 'kt-mat-dialog-container__wrapper',
-				height: 'auto',
-				width: '900px'
-			}
+				panelClass: "kt-mat-dialog-container__wrapper",
+				height: "auto",
+				width: "900px",
+			},
 		},
 		TypesUtilsService,
 		LayoutUtilsService,
@@ -198,7 +208,7 @@ const routes: Routes = [
 		ProductSpecificationsService,
 		ProductsService,
 		TypesUtilsService,
-		LayoutUtilsService
+		LayoutUtilsService,
 	],
 	entryComponents: [
 		ActionNotificationComponent,
@@ -206,7 +216,7 @@ const routes: Routes = [
 		DeleteEntityDialogComponent,
 		FetchEntityDialogComponent,
 		UpdateStatusDialogComponent,
-		SpecificationEditDialogComponent
+		SpecificationEditDialogComponent,
 	],
 	declarations: [
 		ECommerceComponent,
@@ -221,7 +231,7 @@ const routes: Routes = [
 		ProductEditComponent,
 		RemarksListComponent,
 		SpecificationsListComponent,
-		SpecificationEditDialogComponent
-	]
+		SpecificationEditDialogComponent,
+	],
 })
-export class ECommerceModule { }
+export class ECommerceModule {}

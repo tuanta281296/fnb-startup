@@ -128,13 +128,7 @@ namespace FNBStarup.Controllers
             var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
             if (file.Length > 0)
             {
-                var fileName = System.Net.Http.Headers.ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                var fullPath = Path.Combine(pathToSave, fileName);
-                string dbPath = Path.Combine(folderName, fileName);
-                using (var stream = new FileStream(fullPath, FileMode.Create))
-                {
-                    file.CopyTo(stream);
-                }
+                string dbPath = CommonFunc.UploadImage(pathToSave, folderName, file);
                 return Ok(new { dbPath });
             }
             else

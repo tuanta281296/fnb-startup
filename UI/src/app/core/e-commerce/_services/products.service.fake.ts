@@ -1,29 +1,39 @@
 // Angular
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 // RxJS
-import { Observable, forkJoin, BehaviorSubject, of } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { Observable, forkJoin, BehaviorSubject, of } from "rxjs";
+import { mergeMap } from "rxjs/operators";
 // CRUD
-import { HttpUtilsService, QueryParamsModel, QueryResultsModel } from '../../_base/crud';
+import {
+	HttpUtilsService,
+	QueryParamsModel,
+	QueryResultsModel,
+} from "../../_base/crud";
 // Models
-import { ProductModel } from '../_models/product.model';
-import { each } from 'lodash';
+import { ProductModel } from "../_models/product.model";
+import { each } from "lodash";
 
-const API_PRODUCTS_URL = 'api/products';
+const API_PRODUCTS_URL = "api/products";
 // Fake REST API (Mock)
 // This method emulates server calls
 @Injectable()
 export class ProductsService {
-	lastFilter$: BehaviorSubject<QueryParamsModel> = new BehaviorSubject(new QueryParamsModel({}, 'asc', '', 0, 10));
+	lastFilter$: BehaviorSubject<QueryParamsModel> = new BehaviorSubject(
+		new QueryParamsModel({}, "asc", "", 0, 10)
+	);
 
-	constructor(private http: HttpClient,
-		private httpUtils: HttpUtilsService) { }
+	constructor(
+		private http: HttpClient,
+		private httpUtils: HttpUtilsService
+	) {}
 
 	// CREATE =>  POST: add a new product to the server
 	createProduct(product): Observable<ProductModel> {
 		const httpHeaders = this.httpUtils.getHTTPHeaders();
-		return this.http.post<ProductModel>(API_PRODUCTS_URL, product, { headers: httpHeaders });
+		return this.http.post<ProductModel>(API_PRODUCTS_URL, product, {
+			headers: httpHeaders,
+		});
 	}
 
 	// READ
@@ -37,8 +47,11 @@ export class ProductsService {
 
 	findProducts(queryParams: QueryParamsModel): Observable<QueryResultsModel> {
 		return this.getAllProducts().pipe(
-			mergeMap(res => {
-				const result = this.httpUtils.baseFilter(res, queryParams, ['status', 'condition']);
+			mergeMap((res) => {
+				const result = this.httpUtils.baseFilter(res, queryParams, [
+					"status",
+					"condition",
+				]);
 				return of(result);
 			})
 		);
@@ -48,17 +61,22 @@ export class ProductsService {
 	updateProduct(product: ProductModel): Observable<any> {
 		// Note: Add headers if needed (tokens/bearer)
 		const httpHeaders = this.httpUtils.getHTTPHeaders();
-		return this.http.put(API_PRODUCTS_URL, product, { headers: httpHeaders });
+		return this.http.put(API_PRODUCTS_URL, product, {
+			headers: httpHeaders,
+		});
 	}
 
 	// UPDATE Status
 	// Comment this when you start work with real server
 	// This code imitates server calls
-	updateStatusForProduct(products: ProductModel[], status: number): Observable<any> {
+	updateStatusForProduct(
+		products: ProductModel[],
+		active: boolean
+	): Observable<any> {
 		const tasks$ = [];
-		each(products, element => {
+		each(products, (element) => {
 			const _product = Object.assign({}, element);
-			_product.status = status;
+			_product.active = active;
 			tasks$.push(this.updateProduct(_product));
 		});
 		return forkJoin(tasks$);

@@ -195,6 +195,41 @@ namespace Entities.Data.Migrations
                     b.ToTable("OM_UsersRole");
                 });
 
+            modelBuilder.Entity("Entities.Data.Model.PO.PO_Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("DefaultPrice")
+                        .HasColumnType("float");
+
+                    b.Property<int>("DefaultUnit")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductID")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("ProductName")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("ProductTypeID")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PO_Product");
+                });
+
             modelBuilder.Entity("Entities.Data.Model.PO_ProductType", b =>
                 {
                     b.Property<int>("Id")
@@ -276,6 +311,33 @@ namespace Entities.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SI_Occupation");
+                });
+
+            modelBuilder.Entity("Entities.Data.Model.SI_Unit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UnitID")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("UnitName")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("UnitType")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SI_Unit");
                 });
 #pragma warning restore 612, 618
         }

@@ -13,5 +13,6 @@ namespace Repository.Command
         Task<ActionResult<IEnumerable<SI_City>>> GetListCities(ApplicationDbContext _context);
         Task<ActionResult<IEnumerable<SI_District>>> GetListDistricts(ApplicationDbContext _context);
         Task<ActionResult<IEnumerable<PO_ProductType>>> GetListProductType(ApplicationDbContext _context);
+        Task<ActionResult<IEnumerable<SI_Unit>>> GetPurchaseUnit(ApplicationDbContext _context);
     }
 }

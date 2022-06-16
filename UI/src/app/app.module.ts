@@ -1,38 +1,44 @@
 // Angular
-import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GestureConfig, MatProgressSpinnerModule } from '@angular/material';
-import { OverlayModule } from '@angular/cdk/overlay';
+import {
+	BrowserModule,
+	HAMMER_GESTURE_CONFIG,
+} from "@angular/platform-browser";
+import { APP_INITIALIZER, NgModule } from "@angular/core";
+import { TranslateModule } from "@ngx-translate/core";
+import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { GestureConfig, MatProgressSpinnerModule } from "@angular/material";
+import { OverlayModule } from "@angular/cdk/overlay";
 // Angular in memory
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
 // Perfect Scroll bar
-import { PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import {
+	PERFECT_SCROLLBAR_CONFIG,
+	PerfectScrollbarConfigInterface,
+} from "ngx-perfect-scrollbar";
 // SVG inline
-import { InlineSVGModule } from 'ng-inline-svg';
+import { InlineSVGModule } from "ng-inline-svg";
 // Env
-import { environment } from '../environments/environment';
+import { environment } from "../environments/environment";
 // Hammer JS
-import 'hammerjs';
+import "hammerjs";
 // NGX Permissions
-import { NgxPermissionsModule } from 'ngx-permissions';
+import { NgxPermissionsModule } from "ngx-permissions";
 // NGRX
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
+import { StoreRouterConnectingModule } from "@ngrx/router-store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 // State
-import { metaReducers, reducers } from './core/reducers';
+import { metaReducers, reducers } from "./core/reducers";
 // Copmponents
-import { AppComponent } from './app.component';
+import { AppComponent } from "./app.component";
 // Modules
-import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from './core/core.module';
+import { AppRoutingModule } from "./app-routing.module";
+import { CoreModule } from "./core/core.module";
 import { ThemeModule } from "./views/theme/theme.module";
 // Partials
-import { PartialsModule } from './views/partials/partials.module';
+import { PartialsModule } from "./views/partials/partials.module";
 // Layout Services
 import {
 	DataTableService,
@@ -45,22 +51,27 @@ import {
 	MenuHorizontalService,
 	PageConfigService,
 	SplashScreenService,
-	SubheaderService
-} from './core/_base/layout';
+	SubheaderService,
+} from "./core/_base/layout";
 // Auth
-import { AuthModule } from './views/pages/auth/auth.module';
-import { AuthService } from './core/auth';
+import { AuthModule } from "./views/pages/auth/auth.module";
+import { AuthService } from "./core/auth";
 // CRUD
-import { HttpUtilsService, LayoutUtilsService, TypesUtilsService } from './core/_base/crud';
+import {
+	HttpUtilsService,
+	LayoutUtilsService,
+	TypesUtilsService,
+} from "./core/_base/crud";
 // Config
-import { LayoutConfig } from './core/_config/layout.config';
+import { LayoutConfig } from "./core/_config/layout.config";
 // Highlight JS
-import { HIGHLIGHT_OPTIONS, HighlightLanguage } from 'ngx-highlightjs';
-import * as typescript from 'highlight.js/lib/languages/typescript';
-import * as scss from 'highlight.js/lib/languages/scss';
-import * as xml from 'highlight.js/lib/languages/xml';
-import * as json from 'highlight.js/lib/languages/json';
-import { AuthServiceApp } from '../app/views/pages/service.auth';
+import { HIGHLIGHT_OPTIONS, HighlightLanguage } from "ngx-highlightjs";
+import * as typescript from "highlight.js/lib/languages/typescript";
+import * as scss from "highlight.js/lib/languages/scss";
+import * as xml from "highlight.js/lib/languages/xml";
+import * as json from "highlight.js/lib/languages/json";
+import { AuthServiceApp } from "../app/views/pages/service.auth";
+import { CurrencyPipe } from "@angular/common";
 
 // tslint:disable-next-line:class-name
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -81,10 +92,10 @@ export function initializeLayoutConfig(appConfig: LayoutConfigService) {
 
 export function hljsLanguages(): HighlightLanguage[] {
 	return [
-		{name: 'typescript', func: typescript},
-		{name: 'scss', func: scss},
-		{name: 'xml', func: xml},
-		{name: 'json', func: json}
+		{ name: "typescript", func: typescript },
+		{ name: "scss", func: scss },
+		{ name: "xml", func: xml },
+		{ name: "json", func: json },
 	];
 }
 
@@ -95,23 +106,25 @@ export function hljsLanguages(): HighlightLanguage[] {
 		BrowserModule,
 		AppRoutingModule,
 		HttpClientModule,
-		environment.isMockEnabled ? HttpClientInMemoryWebApiModule.forRoot(FakeApiService, {
-			passThruUnknownUrl: true,
-			dataEncapsulation: false
-		}) : [],
+		environment.isMockEnabled
+			? HttpClientInMemoryWebApiModule.forRoot(FakeApiService, {
+					passThruUnknownUrl: true,
+					dataEncapsulation: false,
+			  })
+			: [],
 		NgxPermissionsModule.forRoot(),
 		PartialsModule,
 		CoreModule,
 		OverlayModule,
-		StoreModule.forRoot(reducers, {metaReducers}),
+		StoreModule.forRoot(reducers, { metaReducers }),
 		EffectsModule.forRoot([]),
-		StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
+		StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
 		StoreDevtoolsModule.instrument(),
 		AuthModule.forRoot(),
 		TranslateModule.forRoot(),
 		MatProgressSpinnerModule,
 		InlineSVGModule.forRoot(),
-		ThemeModule
+		ThemeModule,
 	],
 	exports: [],
 	providers: [
@@ -126,21 +139,22 @@ export function hljsLanguages(): HighlightLanguage[] {
 		SplashScreenService,
 		{
 			provide: PERFECT_SCROLLBAR_CONFIG,
-			useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+			useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
 		},
 		{
 			provide: HAMMER_GESTURE_CONFIG,
-			useClass: GestureConfig
+			useClass: GestureConfig,
 		},
 		{
 			// layout config initializer
 			provide: APP_INITIALIZER,
 			useFactory: initializeLayoutConfig,
-			deps: [LayoutConfigService], multi: true
+			deps: [LayoutConfigService],
+			multi: true,
 		},
 		{
 			provide: HIGHLIGHT_OPTIONS,
-			useValue: {languages: hljsLanguages}
+			useValue: { languages: hljsLanguages },
 		},
 		// template services
 		SubheaderService,
@@ -149,8 +163,8 @@ export function hljsLanguages(): HighlightLanguage[] {
 		HttpUtilsService,
 		TypesUtilsService,
 		LayoutUtilsService,
+		CurrencyPipe,
 	],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

@@ -43,8 +43,15 @@ namespace FNBStartup.Controllers
         [HttpGet, Route("producttype")]
         public async Task<IActionResult> GetProductType()
         {
-            var producttype = await _masterDataCommand.GetListDistricts(_context);
+            var producttype = await _masterDataCommand.GetListProductType(_context);
             return Ok(producttype.Value);
+        }
+
+        [HttpGet, Route("unit")]
+        public async Task<IActionResult> GetPurchaseUnit()
+        {
+            var unit = await _masterDataCommand.GetPurchaseUnit(_context);
+            return Ok(unit.Value);
         }
     }
 }

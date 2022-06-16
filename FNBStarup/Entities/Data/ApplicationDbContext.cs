@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Entities.Data.Model;
+using Entities.Data.Model.PO;
 
 namespace Entities.Data
 {
@@ -27,5 +28,7 @@ namespace Entities.Data
         public DbSet<SI_City> SI_City { get; set; }
         public DbSet<Branches> Branch { get; set; }
         public DbSet<PO_ProductType> PO_ProductType { get; set; }
+        public DbSet<SI_Unit> SI_Unit { get; set; }
+        public DbSet<PO_Product> PO_Product { get; set; }
     }
 }
