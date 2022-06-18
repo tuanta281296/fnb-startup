@@ -58,6 +58,8 @@ namespace FNBStartup.Controllers
             return product;
         }
 
+        #region Save And Delete
+
         [HttpPut]
         [Authorize]
         public async Task<ActionResult<PO_Product>> PutProduct(PO_Product product)
@@ -65,6 +67,30 @@ namespace FNBStartup.Controllers
             await _poProductCommand.PutProduct(product, _context);
             return CreatedAtAction("FindProduct", new { id = product.Id }, product);
         }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult<PO_Product>> PostRoles(PO_Product product)
+        {
+            await _poProductCommand.PostProduct(product, _context);
+            return CreatedAtAction("FindRoles", new { id = product.Id }, product);
+        }
+
+        [HttpDelete("{productId}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteProduct(int productId)
+        {
+            var product = await _context.PO_Product.FindAsync(productId);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            await _poProductCommand.DeleteProduct(product, _context);
+
+            return NoContent();
+        }
+        #endregion
 
         #region Upload Image
         [HttpPost, Route("upload-image")]

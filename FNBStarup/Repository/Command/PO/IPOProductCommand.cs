@@ -15,6 +15,8 @@ namespace Repository.Command.PO
         Task<ActionResult<IEnumerable<PO_Product>>> GetListProduct(ApplicationDbContext _context);
         Task<ActionResult<ApiResult<PO_Product>>> FindProduct([FromBody] QueryParamsModel<PO_Product> query, ApplicationDbContext _context);
         Task<ActionResult<PO_Product>> GetProductById(ApplicationDbContext _context, int productID);
+        Task<ActionResult<PO_Product>> PostProduct(PO_Product product, ApplicationDbContext _context);
         Task<ActionResult<PO_Product>> PutProduct(PO_Product product, ApplicationDbContext _context);
+        Task<ActionResult<PO_Product>> DeleteProduct(PO_Product product, ApplicationDbContext _context);
     }
 }

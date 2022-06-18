@@ -51,6 +51,13 @@ namespace Repository.Command.PO
             return await _context.PO_Product.FindAsync(productID);
         }
 
+        public async Task<ActionResult<PO_Product>> PostProduct(PO_Product product, ApplicationDbContext _context)
+        {
+            _context.PO_Product.Add(product);
+            await _context.SaveChangesAsync();
+            return product;
+        }
+
         public async Task<ActionResult<PO_Product>> PutProduct(PO_Product product, ApplicationDbContext _context)
         {
             var productUpdate = await _context.PO_Product.FindAsync(product.Id);
@@ -60,11 +67,20 @@ namespace Repository.Command.PO
                 productUpdate.ProductTypeID = product.ProductTypeID;
                 productUpdate.DefaultPrice = product.DefaultPrice;
                 productUpdate.DefaultUnit = product.DefaultUnit;
+                productUpdate.Image = product.Image;
                 productUpdate.Active = product.Active;
             }
             await _context.SaveChangesAsync();
 
             return productUpdate;
+        }
+
+        public async Task<ActionResult<PO_Product>> DeleteProduct(PO_Product product, ApplicationDbContext _context)
+        {
+            _context.PO_Product.Remove(product);
+            await _context.SaveChangesAsync();
+
+            return product;
         }
     }
 }

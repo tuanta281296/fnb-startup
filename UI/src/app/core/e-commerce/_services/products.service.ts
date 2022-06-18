@@ -28,13 +28,11 @@ export class ProductsService {
 
 	// CREATE =>  POST: add a new product to the server
 	createProduct(product): Observable<ProductModel> {
-		const httpHeaders = this.httpUtils.getHTTPHeaders();
+		const httpOptions = this.httpUtils.setAuthorizeHTTPHeaders();
 		return this.http.post<ProductModel>(
 			this.baseUrl + API_PRODUCTS_URL,
 			product,
-			{
-				headers: httpHeaders,
-			}
+			httpOptions
 		);
 	}
 
@@ -90,17 +88,16 @@ export class ProductsService {
 
 	// DELETE => delete the product from the server
 	deleteProduct(productId: number): Observable<ProductModel> {
-		const url = `${API_PRODUCTS_URL}/${productId}`;
-		return this.http.delete<ProductModel>(url);
+		const httpOptions = this.httpUtils.setAuthorizeHTTPHeaders();
+		const url = this.baseUrl + `${API_PRODUCTS_URL}/${productId}`;
+		return this.http.delete<ProductModel>(url, httpOptions);
 	}
 
 	deleteProducts(ids: number[] = []): Observable<any> {
-		const url = API_PRODUCTS_URL + "/delete";
-		const httpHeaders = this.httpUtils.getHTTPHeaders();
+		const httpOptions = this.httpUtils.setAuthorizeHTTPHeaders();
+		const url = this.baseUrl + API_PRODUCTS_URL + "/delete";
 		const body = { prdocutIdsForDelete: ids };
-		return this.http.put<QueryResultsModel>(url, body, {
-			headers: httpHeaders,
-		});
+		return this.http.put<QueryResultsModel>(url, body, httpOptions);
 	}
 
 	getDataSelect(value: any, apiUrl): Observable<any[]> {

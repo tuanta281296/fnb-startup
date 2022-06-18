@@ -389,7 +389,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 		_product.productTypeID = controls["productTypeID"].value;
 		_product.productID = controls["productID"].value;
 		_product.productName = controls["productName"].value;
-		_product.image = controls["image"].value;
+		_product.image = this.imagePath;
 		_product.defaultUnit = controls["defaultUnit"].value;
 		_product.defaultPrice = controls["defaultPrice"].value.replace(
 			/[^0-9.]+/g,
