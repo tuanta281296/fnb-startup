@@ -123,6 +123,7 @@ namespace Repository.Command
         }
         public async Task<ActionResult<OM_Users>> DeleteUsers(OM_Users user, ApplicationDbContext _context)
         {
+            CommonFunc.DeleteFileImage("Users", user.FolderPic);
             _context.OM_Users.Remove(user);
 
             foreach (var item in _context.OM_UsersAddRole.Where(p => p.UserID == user.Id))

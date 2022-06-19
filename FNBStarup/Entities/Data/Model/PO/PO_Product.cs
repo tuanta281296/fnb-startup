@@ -44,6 +44,11 @@ namespace Entities.Data.Model.PO
             set { image = value.Replace(hostSetting.GetSettingHosting("HostSetting", "host"), ""); }
         }
 
+        public string FolderImage
+        {
+            get { return image; }
+        }
+
         [ScaffoldColumn(true)]
         [Required]
         public int DefaultUnit { get; set; }

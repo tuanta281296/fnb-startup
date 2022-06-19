@@ -93,6 +93,7 @@ namespace Repository.Command.PO
 
         public async Task<ActionResult<PO_Product>> DeleteProduct(PO_Product product, ApplicationDbContext _context)
         {
+            CommonFunc.DeleteFileImage("Product", product.FolderImage);
             _context.PO_Product.Remove(product);
             await _context.SaveChangesAsync();
 
@@ -104,7 +105,7 @@ namespace Repository.Command.PO
             foreach (var product in prodcutIdsForDelete)
             {
                 var productDelete = await _context.PO_Product.FindAsync(product);
-                CommonFunc.DeleteFileImage("Product", productDelete.Image);
+                CommonFunc.DeleteFileImage("Product", productDelete.FolderImage);
                 _context.PO_Product.Remove(productDelete);
             }
 

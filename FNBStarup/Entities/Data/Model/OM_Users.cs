@@ -41,6 +41,11 @@ namespace Entities.Data.Model
             set { pic =  value.Replace(hostSetting.GetSettingHosting("HostSetting", "host"), ""); }
         }
 
+        public string FolderPic
+        {
+            get { return pic; }
+        }
+
         public string Fullname { get; set; }
 
         public string RefreshToken { get; set; }
