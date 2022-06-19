@@ -345,7 +345,10 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 		let messages = [];
 		this.selection.selected.forEach((elem) => {
 			messages.push({
-				text: `${elem.productTypeID} ${elem.productID} ${elem.defaultUnit}`,
+				text:
+					this.getDescrProductType(elem.productTypeID) +
+					` - ${elem.productName} - ` +
+					this.getDescrUnit(elem.defaultUnit),
 				id: elem.productID,
 				status: elem.active,
 			});
@@ -361,13 +364,16 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 		const _updateMessage = "Status has been updated for selected products";
 		const _statuses = [
 			{ value: 0, text: "Selling" },
-			{ value: 1, text: "Sold" },
+			{ value: 1, text: "Cancelled" },
 		];
 		const _messages = [];
 
 		this.selection.selected.forEach((elem) => {
 			_messages.push({
-				text: `${elem.productTypeID} ${elem.productID} ${elem.defaultUnit}`,
+				text:
+					this.getDescrProductType(elem.productTypeID) +
+					` - ${elem.productName} - ` +
+					this.getDescrUnit(elem.defaultUnit),
 				id: elem.productID,
 				status: elem.active,
 				statusTitle: this.getItemStatusString(elem.active),
@@ -386,12 +392,12 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 				return;
 			}
 
-			// this.store.dispatch(
-			// 	new ProductsStatusUpdated({
-			// 		status: +res,
-			// 		products: this.selection.selected,
-			// 	})
-			// );
+			this.store.dispatch(
+				new ProductsStatusUpdated({
+					active: Boolean(res === "0"),
+					products: this.selection.selected,
+				})
+			);
 
 			this.layoutUtilsService.showActionNotification(
 				_updateMessage,

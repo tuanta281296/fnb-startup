@@ -19,6 +19,7 @@ namespace Entities.Data.Common
             public int PageSize { get; set; }
         }
 
+
         public class CommonFunc 
         {
             public static string UploadImage(string pathToSave, string folderName, IFormFile file)
@@ -33,8 +34,16 @@ namespace Entities.Data.Common
 
                 return dbPath;
             }
+
+            public static void DeleteFileImage(string imageType, string fileName)
+            {
+                var folderName = Path.Combine("Images", imageType);
+                string dbPath = Path.Combine(folderName, fileName);
+                if (File.Exists(dbPath))
+                {
+                    File.Delete(dbPath);
+                }
+            }
         }
-
-
     }
 }

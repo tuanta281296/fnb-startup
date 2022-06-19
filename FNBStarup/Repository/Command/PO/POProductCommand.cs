@@ -75,12 +75,42 @@ namespace Repository.Command.PO
             return productUpdate;
         }
 
+        public async Task<ActionResult<List<PO_Product>>> PutStatusListProduct(List<PO_Product> products, bool active, ApplicationDbContext _context)
+        {
+            foreach (var product in products) 
+            {
+                var productUpdate = await _context.PO_Product.FindAsync(product.Id);
+                if (productUpdate != null)
+                {
+                    productUpdate.Active = active;
+                }
+            }
+            
+            await _context.SaveChangesAsync();
+
+            return products;
+        }
+
         public async Task<ActionResult<PO_Product>> DeleteProduct(PO_Product product, ApplicationDbContext _context)
         {
             _context.PO_Product.Remove(product);
             await _context.SaveChangesAsync();
 
             return product;
+        }
+
+        public async Task<bool> DeleteProducts(List<int> prodcutIdsForDelete, ApplicationDbContext _context)
+        {
+            foreach (var product in prodcutIdsForDelete)
+            {
+                var productDelete = await _context.PO_Product.FindAsync(product);
+                CommonFunc.DeleteFileImage("Product", productDelete.Image);
+                _context.PO_Product.Remove(productDelete);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }

@@ -18,5 +18,7 @@ namespace Repository.Command.PO
         Task<ActionResult<PO_Product>> PostProduct(PO_Product product, ApplicationDbContext _context);
         Task<ActionResult<PO_Product>> PutProduct(PO_Product product, ApplicationDbContext _context);
         Task<ActionResult<PO_Product>> DeleteProduct(PO_Product product, ApplicationDbContext _context);
+        Task<ActionResult<List<PO_Product>>> PutStatusListProduct(List<PO_Product> products, bool active, ApplicationDbContext _context);
+        Task<bool> DeleteProducts(List<int> prodcutIdsForDelete, ApplicationDbContext _context);
     }
 }

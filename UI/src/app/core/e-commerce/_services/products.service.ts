@@ -77,13 +77,13 @@ export class ProductsService {
 		products: ProductModel[],
 		active: boolean
 	): Observable<any> {
-		const httpHeaders = this.httpUtils.getHTTPHeaders();
+		const httpOptions = this.httpUtils.setAuthorizeHTTPHeaders();
 		const body = {
 			productsForUpdate: products,
 			newStatus: active,
 		};
-		const url = API_PRODUCTS_URL + "/updateStatus";
-		return this.http.put(url, body, { headers: httpHeaders });
+		const url = this.baseUrl + API_PRODUCTS_URL + "/updateStatus";
+		return this.http.put(url, body, httpOptions);
 	}
 
 	// DELETE => delete the product from the server
@@ -96,7 +96,7 @@ export class ProductsService {
 	deleteProducts(ids: number[] = []): Observable<any> {
 		const httpOptions = this.httpUtils.setAuthorizeHTTPHeaders();
 		const url = this.baseUrl + API_PRODUCTS_URL + "/delete";
-		const body = { prdocutIdsForDelete: ids };
+		const body = { prodcutIdsForDelete: ids };
 		return this.http.put<QueryResultsModel>(url, body, httpOptions);
 	}
 
