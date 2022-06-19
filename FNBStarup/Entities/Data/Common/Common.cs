@@ -35,13 +35,11 @@ namespace Entities.Data.Common
                 return dbPath;
             }
 
-            public static void DeleteFileImage(string imageType, string fileName)
+            public static void DeleteFileImage(string fileName)
             {
-                var folderName = Path.Combine("Images", imageType);
-                string dbPath = Path.Combine(folderName, fileName);
-                if (File.Exists(dbPath))
+                if (File.Exists(fileName))
                 {
-                    File.Delete(dbPath);
+                    File.Delete(fileName);
                 }
             }
         }
