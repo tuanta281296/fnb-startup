@@ -4,14 +4,17 @@ using LoggerService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using Repository.Command;
 using Repository.Command.PO;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using static Entities.Data.Common.Common;
+using Entities.Data.JsonInput;
 
 namespace FNBStartup.Controllers
 {
@@ -60,6 +63,20 @@ namespace FNBStartup.Controllers
 
         #region Save And Delete
 
+        [HttpPut, Route("updateStatus")]
+        [Authorize]
+        public async Task<ActionResult<List<PO_Product>>> UpdateStatus([FromBody] POProductInput productsForUpdate)
+        {
+            return await _poProductCommand.PutStatusListProduct(productsForUpdate.ProductsForUpdate, productsForUpdate.NewStatus, _context);
+        }
+
+        [HttpPut, Route("delete")]
+        [Authorize]
+        public async Task<bool> DeleteProducts([FromBody] POProductInputDelete prodcutIdsForDelete)
+        {
+            return await _poProductCommand.DeleteProducts(prodcutIdsForDelete.ProdcutIdsForDelete, _context);
+        }
+
         [HttpPut]
         [Authorize]
         public async Task<ActionResult<PO_Product>> PutProduct(PO_Product product)
@@ -70,7 +87,7 @@ namespace FNBStartup.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<PO_Product>> PostRoles(PO_Product product)
+        public async Task<ActionResult<PO_Product>> PostProduct(PO_Product product)
         {
             await _poProductCommand.PostProduct(product, _context);
             return CreatedAtAction("FindRoles", new { id = product.Id }, product);
