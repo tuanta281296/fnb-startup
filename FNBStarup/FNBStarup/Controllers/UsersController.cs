@@ -25,7 +25,6 @@ namespace FNBStarup.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [AllowAnonymous]
     public class UsersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -72,6 +71,7 @@ namespace FNBStarup.Controllers
         }
 
         [HttpPost, Route("findUsers")]
+        [Authorize]
         public async Task<ActionResult<ApiResult<IActionResult>>> FindRoles([FromBody] QueryParamsModel<OM_Users> query)
         {
             var user = await _usersCommand.FindUser(query, _context);

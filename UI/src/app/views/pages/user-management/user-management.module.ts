@@ -1,28 +1,33 @@
 // Angular
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { Router, RouterModule, Routes } from "@angular/router";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 // NGRX
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
 // Translate
-import { TranslateModule } from '@ngx-translate/core';
-import { PartialsModule } from '../../partials/partials.module';
+import { TranslateModule } from "@ngx-translate/core";
+import { PartialsModule } from "../../partials/partials.module";
 // Services
-import { HttpUtilsService, TypesUtilsService, InterceptService, LayoutUtilsService} from '../../../core/_base/crud';
+import {
+	HttpUtilsService,
+	TypesUtilsService,
+	InterceptService,
+	LayoutUtilsService,
+} from "../../../core/_base/crud";
 // Shared
-import { ActionNotificationComponent } from '../../partials/content/crud';
+import { ActionNotificationComponent } from "../../partials/content/crud";
 // Components
-import { UserManagementComponent } from './user-management.component';
-import { UsersListComponent } from './users/users-list/users-list.component';
-import { UserEditComponent } from './users/user-edit/user-edit.component';
-import { RolesListComponent } from './roles/roles-list/roles-list.component';
-import { RoleEditDialogComponent } from './roles/role-edit/role-edit.dialog.component';
-import { UserRolesListComponent } from './users/_subs/user-roles/user-roles-list.component';
-import { ChangePasswordComponent } from './users/_subs/change-password/change-password.component';
-import { AddressComponent } from './users/_subs/address/address.component';
+import { UserManagementComponent } from "./user-management.component";
+import { UsersListComponent } from "./users/users-list/users-list.component";
+import { UserEditComponent } from "./users/user-edit/user-edit.component";
+import { RolesListComponent } from "./roles/roles-list/roles-list.component";
+import { RoleEditDialogComponent } from "./roles/role-edit/role-edit.dialog.component";
+import { UserRolesListComponent } from "./users/_subs/user-roles/user-roles-list.component";
+import { ChangePasswordComponent } from "./users/_subs/change-password/change-password.component";
+import { AddressComponent } from "./users/_subs/address/address.component";
 
 // Material
 import {
@@ -47,53 +52,51 @@ import {
 	MatAutocompleteModule,
 	MAT_DIALOG_DEFAULT_OPTIONS,
 	MatSnackBarModule,
-	MatTooltipModule
-} from '@angular/material';
-import {
-	usersReducer,
-	UserEffects
-} from '../../../core/auth';
+	MatTooltipModule,
+} from "@angular/material";
+import { usersReducer, UserEffects } from "../../../core/auth";
+import { AuthInterceptor } from "../../../core/auth/_helpers/auth.interceptor";
 
 const routes: Routes = [
 	{
-		path: '',
+		path: "",
 		component: UserManagementComponent,
 		children: [
 			{
-				path: '',
-				redirectTo: 'roles',
-				pathMatch: 'full'
+				path: "",
+				redirectTo: "roles",
+				pathMatch: "full",
 			},
 			{
-				path: 'roles',
-				component: RolesListComponent
+				path: "roles",
+				component: RolesListComponent,
 			},
 			{
-				path: 'users',
-				component: UsersListComponent
+				path: "users",
+				component: UsersListComponent,
 			},
 			{
-				path: 'users:id',
-				component: UsersListComponent
+				path: "users:id",
+				component: UsersListComponent,
 			},
 			{
-				path: 'users/add',
-				component: UserEditComponent
+				path: "users/add",
+				component: UserEditComponent,
 			},
 			{
-				path: 'users/add:id',
-				component: UserEditComponent
+				path: "users/add:id",
+				component: UserEditComponent,
 			},
 			{
-				path: 'users/edit',
-				component: UserEditComponent
+				path: "users/edit",
+				component: UserEditComponent,
 			},
 			{
-				path: 'users/edit/:id',
-				component: UserEditComponent
+				path: "users/edit/:id",
+				component: UserEditComponent,
 			},
-		]
-	}
+		],
+	},
 ];
 
 @NgModule({
@@ -102,15 +105,15 @@ const routes: Routes = [
 		HttpClientModule,
 		PartialsModule,
 		RouterModule.forChild(routes),
-		StoreModule.forFeature('users', usersReducer),
-        EffectsModule.forFeature([UserEffects]),
+		StoreModule.forFeature("users", usersReducer),
+		EffectsModule.forFeature([UserEffects]),
 		FormsModule,
 		ReactiveFormsModule,
 		TranslateModule.forChild(),
 		MatButtonModule,
 		MatMenuModule,
 		MatSelectModule,
-        MatInputModule,
+		MatInputModule,
 		MatTableModule,
 		MatAutocompleteModule,
 		MatRadioModule,
@@ -127,32 +130,32 @@ const routes: Routes = [
 		MatExpansionModule,
 		MatTabsModule,
 		MatTooltipModule,
-		MatDialogModule
+		MatDialogModule,
 	],
 	providers: [
 		InterceptService,
 		{
-        	provide: HTTP_INTERCEPTORS,
-       	 	useClass: InterceptService,
-			multi: true
+			provide: HTTP_INTERCEPTORS,
+			useFactory: function (router: Router) {
+				return new InterceptService(router);
+			},
+			useClass: InterceptService,
+			multi: true,
 		},
 		{
 			provide: MAT_DIALOG_DEFAULT_OPTIONS,
 			useValue: {
 				hasBackdrop: true,
-				panelClass: 'kt-mat-dialog-container__wrapper',
-				height: 'auto',
-				width: '900px'
-			}
+				panelClass: "kt-mat-dialog-container__wrapper",
+				height: "auto",
+				width: "900px",
+			},
 		},
 		HttpUtilsService,
 		TypesUtilsService,
-		LayoutUtilsService
+		LayoutUtilsService,
 	],
-	entryComponents: [
-		ActionNotificationComponent,
-		RoleEditDialogComponent
-	],
+	entryComponents: [ActionNotificationComponent, RoleEditDialogComponent],
 	declarations: [
 		UserManagementComponent,
 		UsersListComponent,
@@ -162,6 +165,6 @@ const routes: Routes = [
 		UserRolesListComponent,
 		ChangePasswordComponent,
 		AddressComponent,
-	]
+	],
 })
 export class UserManagementModule {}

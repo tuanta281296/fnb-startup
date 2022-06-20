@@ -64,6 +64,22 @@ export class AuthService {
 			);
 	}
 
+	refreshToken(token: string) {
+		const httpOptions = {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json",
+			}),
+		};
+
+		return this.http.post(
+			this.baseUrl + API_USERS_URL + "refreshtoken",
+			{
+				refreshToken: token,
+			},
+			httpOptions
+		);
+	}
+
 	/*
 	 * Submit forgot password request
 	 *
@@ -86,37 +102,59 @@ export class AuthService {
 
 	// DELETE => delete the user from the server
 	deleteUser(userId: number) {
+		const userToken = localStorage.getItem(environment.authTokenKey);
+		const httpOptions = {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + userToken,
+			}),
+		};
 		const url = `${this.baseUrl + API_USERS_URL}/${userId}`;
-		return this.http.delete(url);
+		return this.http.delete(url, httpOptions);
 	}
 
 	// UPDATE => PUT: update the user on the server
 	updateUser(_user: User): Observable<any> {
-		const httpHeaders = new HttpHeaders();
-		httpHeaders.set("Content-Type", "application/json");
-		return this.http.put(this.baseUrl + API_USERS_URL, _user, {
-			headers: httpHeaders,
-		});
+		const userToken = localStorage.getItem(environment.authTokenKey);
+		const httpOptions = {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + userToken,
+			}),
+		};
+		return this.http.put(this.baseUrl + API_USERS_URL, _user, httpOptions);
 	}
 
 	// CREATE =>  POST: add a new user to the server
 	createUser(user: User): Observable<User> {
-		const httpHeaders = new HttpHeaders();
-		httpHeaders.set("Content-Type", "application/json");
-		return this.http.post<User>(this.baseUrl + API_USERS_URL, user, {
-			headers: httpHeaders,
-		});
+		const userToken = localStorage.getItem(environment.authTokenKey);
+		const httpOptions = {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + userToken,
+			}),
+		};
+		return this.http.post<User>(
+			this.baseUrl + API_USERS_URL,
+			user,
+			httpOptions
+		);
 	}
 
 	// Method from server should return QueryResultsModel(items: any[], totalsCount: number)
 	// items => filtered/sorted result
 	findUsers(queryParams: QueryParamsModel): Observable<QueryResultsModel> {
-		const httpHeaders = new HttpHeaders();
-		httpHeaders.set("Content-Type", "application/json");
+		const userToken = localStorage.getItem(environment.authTokenKey);
+		const httpOptions = {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + userToken,
+			}),
+		};
 		return this.http.post<QueryResultsModel>(
 			this.baseUrl + API_USERS_URL + "/findUsers",
 			queryParams,
-			{ headers: httpHeaders }
+			httpOptions
 		);
 	}
 

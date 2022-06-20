@@ -85,8 +85,6 @@ export class AppComponent implements OnInit, OnDestroy {
 			}
 		});
 		this.unsubscribe.push(routerSubscription);
-
-		console.log("Init Container Before Reload");
 	}
 
 	/**

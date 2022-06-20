@@ -20,6 +20,7 @@ import { AuthService } from "../_services/index";
 import { AppState } from "../../reducers";
 import { environment } from "../../../../environments/environment";
 import { isUserLoaded } from "../_selectors/auth.selectors";
+import { TokenStorageService } from "../_services/token-storage.service";
 
 @Injectable()
 export class AuthEffects {
@@ -27,7 +28,8 @@ export class AuthEffects {
 		private actions$: Actions,
 		private router: Router,
 		private auth: AuthService,
-		private store: Store<AppState>
+		private store: Store<AppState>,
+		private tokenStorage: TokenStorageService
 	) {
 		this.router.events.subscribe((event) => {
 			if (event instanceof NavigationEnd) {
@@ -41,10 +43,8 @@ export class AuthEffects {
 	login$ = this.actions$.pipe(
 		ofType<Login>(AuthActionTypes.Login),
 		tap((action) => {
-			localStorage.setItem(
-				environment.authTokenKey,
-				action.payload.authToken
-			);
+			this.tokenStorage.saveToken(action.payload.authToken);
+			this.tokenStorage.saveRefreshToken(action.payload.authToken);
 			this.store.dispatch(new UserRequested());
 		})
 	);
