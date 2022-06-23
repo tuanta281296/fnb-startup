@@ -37,6 +37,7 @@ namespace FNBStarup.Controllers
         }
 
         [HttpPost, Route("findRoles")]
+        [Authorize]
         public async Task<ActionResult<ApiResult<IActionResult>>> FindRoles([FromBody] QueryParamsModel<OM_UsersRole> query)
         {
             var roleUsers = await _rolesCommand.FindRoles(query, _context);

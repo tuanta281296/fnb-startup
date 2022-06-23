@@ -42,6 +42,7 @@ namespace FNBStartup.Controllers
         }
 
         [HttpPost, Route("find")]
+        [Authorize]
         public async Task<ActionResult<ApiResult<IActionResult>>> FindProduct([FromBody] QueryParamsModel<PO_Product> query)
         {
             var roleUsers = await _poProductCommand.FindProduct(query, _context);

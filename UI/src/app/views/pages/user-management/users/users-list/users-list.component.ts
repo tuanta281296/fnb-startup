@@ -68,6 +68,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
 	displayedColumns = [
 		"select",
 		"id",
+		"pic",
 		"username",
 		"email",
 		"fullname",

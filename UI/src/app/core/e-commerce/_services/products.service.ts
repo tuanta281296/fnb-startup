@@ -50,13 +50,10 @@ export class ProductsService {
 	// Server should return filtered/sorted result
 	findProducts(queryParams: QueryParamsModel): Observable<QueryResultsModel> {
 		// Note: Add headers if needed (tokens/bearer)
-		const httpHeaders = this.httpUtils.getHTTPHeaders();
-		const httpParams = this.httpUtils.getFindHTTPParams(queryParams);
+		const httpOptions = this.httpUtils.setAuthorizeHTTPHeaders();
 
 		const url = this.baseUrl + API_PRODUCTS_URL + "/find";
-		return this.http.post<QueryResultsModel>(url, queryParams, {
-			headers: httpHeaders,
-		});
+		return this.http.post<QueryResultsModel>(url, queryParams, httpOptions);
 	}
 
 	// UPDATE => PUT: update the product on the server

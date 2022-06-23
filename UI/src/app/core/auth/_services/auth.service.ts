@@ -235,12 +235,17 @@ export class AuthService {
 
 	findRoles(queryParams: QueryParamsModel): Observable<QueryResultsModel> {
 		// This code imitates server calls
-		const httpHeaders = new HttpHeaders();
-		httpHeaders.set("Content-Type", "application/json");
+		const userToken = localStorage.getItem(environment.authTokenKey);
+		const httpOptions = {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + userToken,
+			}),
+		};
 		return this.http.post<QueryResultsModel>(
 			this.baseUrl + API_ROLES_URL + "/findRoles",
 			queryParams,
-			{ headers: httpHeaders }
+			httpOptions
 		);
 	}
 

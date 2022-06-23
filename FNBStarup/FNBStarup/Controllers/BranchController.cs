@@ -27,6 +27,7 @@ namespace FNBStartup.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetBranches()
         {
             var brances = await _branchCommand.GetBranches(_context);
