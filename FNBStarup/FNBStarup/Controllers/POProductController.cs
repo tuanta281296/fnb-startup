@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Repository.Command;
-using Repository.Command.PO;
+using Repository.Command.Interface;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -37,7 +37,7 @@ namespace FNBStartup.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProduct()
         {
-            var roleUsers = await _poProductCommand.GetListProduct(_context);
+            var roleUsers = await _poProductCommand.GetListProduct();
             return Ok(roleUsers.Value);
         }
 
@@ -45,14 +45,14 @@ namespace FNBStartup.Controllers
         [Authorize]
         public async Task<ActionResult<ApiResult<IActionResult>>> FindProduct([FromBody] QueryParamsModel<PO_Product> query)
         {
-            var roleUsers = await _poProductCommand.FindProduct(query, _context);
+            var roleUsers = await _poProductCommand.FindProduct(query);
             return Ok(roleUsers.Value);
         }
 
         [HttpGet("{productId}")]
         public async Task<ActionResult<PO_Product>> GetUsersByUsersID(int productId)
         {
-            var product = await _poProductCommand.GetProductById(_context, productId);
+            var product = await _poProductCommand.GetProductById(productId);
 
             if (product == null)
             {
@@ -68,21 +68,21 @@ namespace FNBStartup.Controllers
         [Authorize]
         public async Task<ActionResult<List<PO_Product>>> UpdateStatus([FromBody] POProductInput productsForUpdate)
         {
-            return await _poProductCommand.PutStatusListProduct(productsForUpdate.ProductsForUpdate, productsForUpdate.NewStatus, _context);
+            return await _poProductCommand.PutStatusListProduct(productsForUpdate.ProductsForUpdate, productsForUpdate.NewStatus);
         }
 
         [HttpPut, Route("delete")]
         [Authorize]
         public async Task<bool> DeleteProducts([FromBody] POProductInputDelete prodcutIdsForDelete)
         {
-            return await _poProductCommand.DeleteProducts(prodcutIdsForDelete.ProdcutIdsForDelete, _context);
+            return await _poProductCommand.DeleteProducts(prodcutIdsForDelete.ProdcutIdsForDelete);
         }
 
         [HttpPut]
         [Authorize]
         public async Task<ActionResult<PO_Product>> PutProduct(PO_Product product)
         {
-            await _poProductCommand.PutProduct(product, _context);
+            await _poProductCommand.PutProduct(product);
             return CreatedAtAction("FindProduct", new { id = product.Id }, product);
         }
 
@@ -90,7 +90,7 @@ namespace FNBStartup.Controllers
         [Authorize]
         public async Task<ActionResult<PO_Product>> PostProduct(PO_Product product)
         {
-            await _poProductCommand.PostProduct(product, _context);
+            await _poProductCommand.PostProduct(product);
             return CreatedAtAction("FindRoles", new { id = product.Id }, product);
         }
 
@@ -104,7 +104,7 @@ namespace FNBStartup.Controllers
                 return NotFound();
             }
 
-            await _poProductCommand.DeleteProduct(product, _context);
+            await _poProductCommand.DeleteProduct(product);
 
             return NoContent();
         }

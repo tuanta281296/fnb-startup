@@ -16,7 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Repository.Command;
+using Repository.Command.Interface;
 using static Entities.Data.Common.Common;
 using System.IO;
 using LoggerService;
@@ -45,7 +45,7 @@ namespace FNBStarup.Controllers
         {
             IActionResult response = Unauthorized();
             var tokenString = GenerateJSONWebToken(userLogin);
-            var user = _usersCommand.AuthenticateUser(userLogin, _context, tokenString);
+            var user = _usersCommand.AuthenticateUser(userLogin, tokenString);
             return Ok(user);
         }
 
@@ -53,14 +53,14 @@ namespace FNBStarup.Controllers
         public async Task<IActionResult> GetUsersByToken()
         {
             var accessToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
-            var user = await _usersCommand.GetUsersByToken(_context, accessToken);
+            var user = await _usersCommand.GetUsersByToken(accessToken);
             return Ok(user);
         }
 
         [HttpGet("{userId}")]
         public async Task<ActionResult<OM_Users>> GetUsersByUsersID(int userId) 
         {
-            var user = await _usersCommand.GetUserById(_context, userId);
+            var user = await _usersCommand.GetUserById(userId);
 
             if (user == null)
             {
@@ -74,14 +74,14 @@ namespace FNBStarup.Controllers
         [Authorize]
         public async Task<ActionResult<ApiResult<IActionResult>>> FindRoles([FromBody] QueryParamsModel<OM_Users> query)
         {
-            var user = await _usersCommand.FindUser(query, _context);
+            var user = await _usersCommand.FindUser(query);
             return Ok(user.Value);
         }
 
         [HttpGet, Route("occupation")]
         public async Task<IActionResult> GetOccupation()
         {
-            var occupations = await _usersCommand.GetListOccupations(_context);
+            var occupations = await _usersCommand.GetListOccupations();
             return Ok(occupations.Value);
         }
         #endregion
@@ -91,7 +91,7 @@ namespace FNBStarup.Controllers
         [Authorize]
         public async Task<ActionResult<OM_Users>> PostRoles(OM_Users users)
         {
-            await _usersCommand.PostUsers(users, _context);
+            await _usersCommand.PostUsers(users);
             return CreatedAtAction("FindRoles", new { id = users.Id }, users);
         }
 
@@ -99,7 +99,7 @@ namespace FNBStarup.Controllers
         [Authorize]
         public async Task<ActionResult<OM_Users>> PutUsers(OM_Users users)
         {
-            await _usersCommand.PutUsers(users, _context);
+            await _usersCommand.PutUsers(users);
             return CreatedAtAction("FindRoles", new { id = users.Id }, users);
         }
 
@@ -113,7 +113,7 @@ namespace FNBStarup.Controllers
                 return NotFound();
             }
 
-            await _usersCommand.DeleteUsers(role, _context);
+            await _usersCommand.DeleteUsers(role);
 
             return NoContent();
         }

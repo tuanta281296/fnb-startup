@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Entities.Data.Common;
 
 namespace Entities.Data.Model
 {
     [Table("OM_Permissions")]
-    public class OM_Permissions
+    public class OM_Permissions : BaseEntity
     {
         #region Constructor
         public OM_Permissions()
@@ -16,12 +17,6 @@ namespace Entities.Data.Model
         #endregion
 
         #region Properties
-        /// <summary>
-        /// The unique id and primary key for this Country
-        /// </summary>
-        [Key]
-        [Required]
-        public int Id { get; set; }
         /// <summary>
         /// Country name (in UTF8 format)
         /// </summary>

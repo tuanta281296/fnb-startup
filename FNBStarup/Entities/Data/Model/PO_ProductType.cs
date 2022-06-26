@@ -8,15 +8,9 @@ using Entities.Data.Common;
 namespace Entities.Data.Model
 {
     [Table("PO_ProductType")]
-    public class PO_ProductType
+    public class PO_ProductType : BaseEntity
     {
         #region Properties
-        /// <summary>
-        /// The unique id and primary key for this Country
-        /// </summary>
-        [Key]
-        [Required]
-        public int Id { get; set; }
 
         [ScaffoldColumn(true)]
         [StringLength(30, ErrorMessage = "The Product Type Code value cannot exceed 30 characters. ")]

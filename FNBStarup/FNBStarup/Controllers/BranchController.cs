@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Repository.Command;
+using Repository.Command.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +17,10 @@ namespace FNBStartup.Controllers
     [Route("api/[controller]")]
     public class BranchController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
         private readonly IBranchCommand _branchCommand;
 
         public BranchController(ApplicationDbContext context, IBranchCommand branchCommand)
         {
-            _context = context;
             _branchCommand = branchCommand;
         }
 
@@ -30,7 +28,7 @@ namespace FNBStartup.Controllers
         [Authorize]
         public async Task<IActionResult> GetBranches()
         {
-            var brances = await _branchCommand.GetBranches(_context);
+            var brances = await _branchCommand.GetBranches();
             return Ok(brances.Value);
         }
 
@@ -39,7 +37,7 @@ namespace FNBStartup.Controllers
         [Authorize]
         public async Task<IActionResult> PutBranches(Branches branches)
         {
-            await _branchCommand.PutBranches(branches, _context);
+            await _branchCommand.PutBranches(branches);
 
             return NoContent();
         }
@@ -49,7 +47,7 @@ namespace FNBStartup.Controllers
         [Authorize]
         public async Task<IActionResult> PostBranches(Branches branches)
         {
-            await _branchCommand.PostBranches(branches, _context);
+            await _branchCommand.PostBranches(branches);
 
             return NoContent();
         }
@@ -58,7 +56,7 @@ namespace FNBStartup.Controllers
         [Authorize]
         public async Task<IActionResult> DeleteBranch(int idBranch)
         {
-            await _branchCommand.DeleteBranches(idBranch, _context);
+            await _branchCommand.DeleteBranches(idBranch);
 
             return NoContent();
         }
@@ -66,7 +64,7 @@ namespace FNBStartup.Controllers
         [HttpPost, Route("findBranches")]
         public async Task<ActionResult<ApiResult<IActionResult>>> FindRoles([FromBody] QueryParamsModel<Branches> query)
         {
-            var branches = await _branchCommand.FindBranches(query, _context);
+            var branches = await _branchCommand.FindBranches(query);
 
             return Ok(branches.Value);
         }

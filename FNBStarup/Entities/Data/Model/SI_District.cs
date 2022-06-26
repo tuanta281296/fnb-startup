@@ -8,15 +8,9 @@ using Entities.Data.Common;
 namespace Entities.Data.Model
 {
     [Table("SI_District")]
-    public class SI_District
+    public class SI_District : BaseEntity
     {
         #region Properties
-        /// <summary>
-        /// The unique id and primary key for this Country
-        /// </summary>
-        [Key]
-        [Required]
-        public int Id { get; set; }
 
         [ScaffoldColumn(true)]
         [StringLength(30, ErrorMessage = "The Occupation Code value cannot exceed 30 characters. ")]

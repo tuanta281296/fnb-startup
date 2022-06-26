@@ -4,11 +4,12 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc;
+using Entities.Data.Common;
 
 namespace Entities.Data.Model
 {
     [Table("OM_UsersRole")]
-    public class OM_UsersRole
+    public class OM_UsersRole : BaseEntity
     {
         #region Constructor
         public OM_UsersRole()
@@ -18,12 +19,6 @@ namespace Entities.Data.Model
         #endregion
 
         #region Properties
-        /// <summary>
-        /// The unique id and primary key for this Country
-        /// </summary>
-        [Key]
-        [Required]
-        public int Id { get; set; }
         /// <summary>
         /// Country name (in UTF8 format)
         /// </summary>

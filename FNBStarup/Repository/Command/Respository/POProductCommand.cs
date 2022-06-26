@@ -9,12 +9,19 @@ using System.Threading.Tasks;
 using Entities.Data.Model.PO;
 using static Entities.Data.Common.Common;
 using System.Linq;
+using Repository.Command.Interface;
 
-namespace Repository.Command.PO
+namespace Repository.Command.Respository
 {
     public class POProductCommand : IPOProductCommand
     {
-        public async Task<ActionResult<IEnumerable<PO_Product>>> GetListProduct(ApplicationDbContext _context)
+        private readonly ApplicationDbContext _context;
+        public POProductCommand(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<ActionResult<IEnumerable<PO_Product>>> GetListProduct()
         {
             // first we perform the filtering...
             var products = _context.PO_Product;
@@ -22,7 +29,7 @@ namespace Repository.Command.PO
             return await products.ToListAsync();
         }
 
-        public async Task<ActionResult<ApiResult<PO_Product>>> FindProduct([FromBody] QueryParamsModel<PO_Product> query, ApplicationDbContext _context)
+        public async Task<ActionResult<ApiResult<PO_Product>>> FindProduct([FromBody] QueryParamsModel<PO_Product> query)
         {
             // first we perform the filtering...
             var products = _context.PO_Product.AsQueryable();
@@ -46,19 +53,19 @@ namespace Repository.Command.PO
                     query);
         }
 
-        public async Task<ActionResult<PO_Product>> GetProductById(ApplicationDbContext _context, int productID)
+        public async Task<ActionResult<PO_Product>> GetProductById(int productID)
         {
             return await _context.PO_Product.FindAsync(productID);
         }
 
-        public async Task<ActionResult<PO_Product>> PostProduct(PO_Product product, ApplicationDbContext _context)
+        public async Task<ActionResult<PO_Product>> PostProduct(PO_Product product)
         {
             _context.PO_Product.Add(product);
             await _context.SaveChangesAsync();
             return product;
         }
 
-        public async Task<ActionResult<PO_Product>> PutProduct(PO_Product product, ApplicationDbContext _context)
+        public async Task<ActionResult<PO_Product>> PutProduct(PO_Product product)
         {
             var productUpdate = await _context.PO_Product.FindAsync(product.Id);
             if (productUpdate != null)
@@ -75,7 +82,7 @@ namespace Repository.Command.PO
             return productUpdate;
         }
 
-        public async Task<ActionResult<List<PO_Product>>> PutStatusListProduct(List<PO_Product> products, bool active, ApplicationDbContext _context)
+        public async Task<ActionResult<List<PO_Product>>> PutStatusListProduct(List<PO_Product> products, bool active)
         {
             foreach (var product in products) 
             {
@@ -91,7 +98,7 @@ namespace Repository.Command.PO
             return products;
         }
 
-        public async Task<ActionResult<PO_Product>> DeleteProduct(PO_Product product, ApplicationDbContext _context)
+        public async Task<ActionResult<PO_Product>> DeleteProduct(PO_Product product)
         {
             CommonFunc.DeleteFileImage(product.FolderImage);
             _context.PO_Product.Remove(product);
@@ -100,7 +107,7 @@ namespace Repository.Command.PO
             return product;
         }
 
-        public async Task<bool> DeleteProducts(List<int> prodcutIdsForDelete, ApplicationDbContext _context)
+        public async Task<bool> DeleteProducts(List<int> prodcutIdsForDelete)
         {
             foreach (var product in prodcutIdsForDelete)
             {

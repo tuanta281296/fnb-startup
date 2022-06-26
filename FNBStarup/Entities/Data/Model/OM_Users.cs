@@ -8,7 +8,7 @@ using Entities.Data.Common;
 namespace Entities.Data.Model
 {
     [Table("OM_Users")]
-    public class OM_Users
+    public class OM_Users : BaseEntity
     {
         HostSetting hostSetting;
         #region Constructor
@@ -21,12 +21,6 @@ namespace Entities.Data.Model
         #endregion
 
         #region Properties
-        /// <summary>
-        /// The unique id and primary key for this Country
-        /// </summary>
-        [Key]
-        [Required]
-        public int Id { get; set; }
 
         public string Username { get; set; }
 

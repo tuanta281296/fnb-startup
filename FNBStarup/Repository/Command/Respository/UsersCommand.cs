@@ -1,4 +1,4 @@
-﻿using Repository.Command;
+﻿using Repository.Command.Interface;
 using Entities.Data;
 using Entities.Data.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +10,16 @@ using Entities.Data.Common;
 using static Entities.Data.Common.Common;
 using System.Collections.Generic;
 
-namespace Repository.Command
+namespace Repository.Command.Respository
 {
     public class UsersCommand : IUsersCommand
     {
-        public async Task<OM_Users> GetUsersByToken(ApplicationDbContext _context, string accessToken)
+        private readonly ApplicationDbContext _context;
+        public UsersCommand(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        public async Task<OM_Users> GetUsersByToken(string accessToken)
         {
             HostSetting hostSetting = new HostSetting();
             // first we perform the filtering...
@@ -41,14 +46,14 @@ namespace Repository.Command
             }
             return user;
         }
-        public async Task<ActionResult<OM_Users>> GetUsers(ApplicationDbContext _context, string email, string password)
+        public async Task<ActionResult<OM_Users>> GetUsers(string email, string password)
         {
             // first we perform the filtering...
             var users = _context.OM_Users.Where(p => p.Email.ToLower() == email.ToLower() && p.Password.ToLower() == password.ToLower());
             //users.FirstOrDefault().Password = null;
             return await users.FirstAsync();
         }
-        public OM_Users AuthenticateUser(UserLogin login, ApplicationDbContext _context, string tokenString)
+        public OM_Users AuthenticateUser(UserLogin login, string tokenString)
         {
             // first we perform the filtering...
             var users = _context.OM_Users.Where(p => p.Email.ToLower() == login.Email.ToLower() && p.Password.ToLower() == login.Password.ToLower()).FirstOrDefault();
@@ -61,10 +66,10 @@ namespace Repository.Command
             }
             return users;
         }
-        public async Task<ActionResult<ApiResult<OM_Users>>> FindUser([FromBody] QueryParamsModel<OM_Users> query, ApplicationDbContext _context)
+        public async Task<ActionResult<ApiResult<OM_Users>>> FindUser([FromBody] QueryParamsModel<OM_Users> query)
         {
             // first we perform the filtering...
-            var userRoles = GetListUser(_context).AsQueryable();
+            var userRoles = GetListUser().AsQueryable();
             if (!string.IsNullOrEmpty(query.Filter.Username))
             {
                 userRoles = userRoles.Where(c => c.Username.Contains(query.Filter.Username));
@@ -74,7 +79,7 @@ namespace Repository.Command
                     userRoles,
                     query);
         }
-        public async Task<ActionResult<OM_Users>> PostUsers(OM_Users user, ApplicationDbContext _context)
+        public async Task<ActionResult<OM_Users>> PostUsers(OM_Users user)
         {
             HostSetting hostSetting = new HostSetting();
             user.Password = "password";
@@ -84,7 +89,7 @@ namespace Repository.Command
             await _context.SaveChangesAsync();
             return user;
         }
-        public async Task<ActionResult<OM_Users>> PutUsers(OM_Users user, ApplicationDbContext _context)
+        public async Task<ActionResult<OM_Users>> PutUsers(OM_Users user)
         {
             HostSetting hostSetting = new HostSetting();
             var userUpdate = await _context.OM_Users.FindAsync(user.Id);
@@ -115,13 +120,13 @@ namespace Repository.Command
                 userAddress.Ward = user.Address.Ward;
                 userAddress.District = user.Address.District;
 
-                SaveRoleUser(user, _context);
+                SaveRoleUser(user);
             }
             await _context.SaveChangesAsync();
 
             return user;
         }
-        public async Task<ActionResult<OM_Users>> DeleteUsers(OM_Users user, ApplicationDbContext _context)
+        public async Task<ActionResult<OM_Users>> DeleteUsers(OM_Users user)
         {
             CommonFunc.DeleteFileImage(user.FolderPic);
             _context.OM_Users.Remove(user);
@@ -140,7 +145,7 @@ namespace Repository.Command
 
             return user;
         }
-        public async Task<ActionResult<IEnumerable<SI_Occupation>>> GetListOccupations(ApplicationDbContext _context)
+        public async Task<ActionResult<IEnumerable<SI_Occupation>>> GetListOccupations()
         {
             // first we perform the filtering...
             var occupations = _context.SI_Occupation;
@@ -148,7 +153,7 @@ namespace Repository.Command
             return await occupations.ToListAsync();
         }
         #region Common Function 
-        public DbSet<OM_Users> GetListUser(ApplicationDbContext _context)
+        public DbSet<OM_Users> GetListUser()
         {
             HostSetting hostSetting = new HostSetting();
             var user = _context.OM_Users;
@@ -175,7 +180,7 @@ namespace Repository.Command
             }
             return user;
         }
-        public async Task<ActionResult<OM_Users>> GetUserById(ApplicationDbContext _context, int userID)
+        public async Task<ActionResult<OM_Users>> GetUserById(int userID)
         {
             HostSetting hostSetting = new HostSetting();
             var user = await _context.OM_Users.FindAsync(userID);
@@ -204,7 +209,7 @@ namespace Repository.Command
             return user;
         }
 
-        public void SaveRoleUser(OM_Users user, ApplicationDbContext _context)
+        public void SaveRoleUser(OM_Users user)
         {
             var userRoleNotAssign = _context.OM_UsersRole.ToList();
 

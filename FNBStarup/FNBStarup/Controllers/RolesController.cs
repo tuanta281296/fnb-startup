@@ -9,7 +9,7 @@ using Entities.Data;
 using Entities.Data.Model;
 using Microsoft.AspNetCore.Authorization;
 using static Entities.Data.Common.Common;
-using Repository.Command;
+using Repository.Command.Interface;
 using LoggerService;
 
 namespace FNBStarup.Controllers
@@ -32,7 +32,7 @@ namespace FNBStarup.Controllers
         [HttpGet]
         public async Task<IActionResult> GetRoleUsers()
         {
-            var roleUsers = await _rolesCommand.GetRoleUsers(_context);
+            var roleUsers = await _rolesCommand.GetRoleUsers();
             return Ok(roleUsers.Value);
         }
 
@@ -40,7 +40,7 @@ namespace FNBStarup.Controllers
         [Authorize]
         public async Task<ActionResult<ApiResult<IActionResult>>> FindRoles([FromBody] QueryParamsModel<OM_UsersRole> query)
         {
-            var roleUsers = await _rolesCommand.FindRoles(query, _context);
+            var roleUsers = await _rolesCommand.FindRoles(query);
             return Ok(roleUsers.Value);
         }
 
@@ -61,7 +61,7 @@ namespace FNBStarup.Controllers
         [Authorize]
         public async Task<ActionResult<OM_UsersRole>> PostRoles(OM_UsersRole userRole)
         {
-            await _rolesCommand.PostRoles(userRole, _context);
+            await _rolesCommand.PostRoles(userRole);
 
             return CreatedAtAction("GetRoleById", new { id = userRole.Id }, userRole);
         }
@@ -72,7 +72,7 @@ namespace FNBStarup.Controllers
         {
             try
             {
-                await _rolesCommand.PutRoles(role, _context);
+                await _rolesCommand.PutRoles(role);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -100,7 +100,7 @@ namespace FNBStarup.Controllers
                 return NotFound();
             }
 
-            await _rolesCommand.DeleteRoles(role, _context);
+            await _rolesCommand.DeleteRoles(role);
 
             return NoContent();
         }
@@ -110,7 +110,7 @@ namespace FNBStarup.Controllers
         [HttpGet, Route("permissions")]
         public async Task<ActionResult<IEnumerable<OM_Permissions>>> GetAllPermission()
         {
-            var permission = await _rolesCommand.GetAllPermission(_context);
+            var permission = await _rolesCommand.GetAllPermission();
             return Ok(permission.Value);
         }
         #endregion

@@ -8,7 +8,7 @@ using Entities.Data.Common;
 namespace Entities.Data.Model.PO
 {
     [Table("PO_Product")]
-    public class PO_Product
+    public class PO_Product : BaseEntity
     {
         HostSetting hostSetting;
         #region Constructor
@@ -18,13 +18,6 @@ namespace Entities.Data.Model.PO
         }
         #endregion
         #region Properties
-        /// <summary>
-        /// The unique id and primary key for this Country
-        /// </summary>
-        [Key]
-        [Required]
-        public int Id { get; set; }
-
         [Required]
         public int ProductTypeID { get; set; }
 
