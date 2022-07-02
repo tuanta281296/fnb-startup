@@ -7,26 +7,26 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Entities.Data.Model.PO;
-using static Entities.Data.Common.Common;
 using System.Linq;
 using Repository.Command.Interface;
+using static Entities.Data.Common.Common;
 
 namespace Repository.Command.Respository
 {
     public class POProductCommand : IPOProductCommand
     {
         private readonly ApplicationDbContext _context;
-        public POProductCommand(ApplicationDbContext context)
+        private readonly IGenericCommand<PO_Product> _productCommand;
+        public POProductCommand(ApplicationDbContext context, IGenericCommand<PO_Product> productCommand)
         {
             _context = context;
+            _productCommand = productCommand;
         }
 
-        public async Task<ActionResult<IEnumerable<PO_Product>>> GetListProduct()
+        public async Task<ActionResult<IReadOnlyList<PO_Product>>> GetListProduct()
         {
-            // first we perform the filtering...
-            var products = _context.PO_Product;
             // ... and then we call the ApiResult
-            return await products.ToListAsync();
+            return await _productCommand.ListAllAsync();
         }
 
         public async Task<ActionResult<ApiResult<PO_Product>>> FindProduct([FromBody] QueryParamsModel<PO_Product> query)
@@ -55,19 +55,19 @@ namespace Repository.Command.Respository
 
         public async Task<ActionResult<PO_Product>> GetProductById(int productID)
         {
-            return await _context.PO_Product.FindAsync(productID);
+            return await _productCommand.GetByIdAsync(productID);
         }
 
         public async Task<ActionResult<PO_Product>> PostProduct(PO_Product product)
         {
-            _context.PO_Product.Add(product);
+            _productCommand.Add(product);
             await _context.SaveChangesAsync();
             return product;
         }
 
         public async Task<ActionResult<PO_Product>> PutProduct(PO_Product product)
         {
-            var productUpdate = await _context.PO_Product.FindAsync(product.Id);
+            var productUpdate = await _productCommand.GetByIdAsync(product.Id);
             if (productUpdate != null)
             {
                 productUpdate.ProductName = product.ProductName;
@@ -86,7 +86,7 @@ namespace Repository.Command.Respository
         {
             foreach (var product in products) 
             {
-                var productUpdate = await _context.PO_Product.FindAsync(product.Id);
+                var productUpdate = await _productCommand.GetByIdAsync(product.Id);
                 if (productUpdate != null)
                 {
                     productUpdate.Active = active;
@@ -101,7 +101,7 @@ namespace Repository.Command.Respository
         public async Task<ActionResult<PO_Product>> DeleteProduct(PO_Product product)
         {
             CommonFunc.DeleteFileImage(product.FolderImage);
-            _context.PO_Product.Remove(product);
+            _productCommand.Delete(product);
             await _context.SaveChangesAsync();
 
             return product;
@@ -111,9 +111,9 @@ namespace Repository.Command.Respository
         {
             foreach (var product in prodcutIdsForDelete)
             {
-                var productDelete = await _context.PO_Product.FindAsync(product);
+                var productDelete = await _productCommand.GetByIdAsync(product);
                 CommonFunc.DeleteFileImage(productDelete.FolderImage);
-                _context.PO_Product.Remove(productDelete);
+                _productCommand.Delete(productDelete);
             }
 
             await _context.SaveChangesAsync();

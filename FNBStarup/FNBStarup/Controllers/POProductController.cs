@@ -50,7 +50,7 @@ namespace FNBStartup.Controllers
         }
 
         [HttpGet("{productId}")]
-        public async Task<ActionResult<PO_Product>> GetUsersByUsersID(int productId)
+        public async Task<ActionResult<PO_Product>> GetProductByID(int productId)
         {
             var product = await _poProductCommand.GetProductById(productId);
 
