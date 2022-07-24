@@ -20,6 +20,7 @@ using Repository.Command.Interface;
 using static Entities.Data.Common.Common;
 using System.IO;
 using LoggerService;
+using FNBStartup.Helper;
 
 namespace FNBStarup.Controllers
 {
@@ -44,7 +45,7 @@ namespace FNBStarup.Controllers
         public IActionResult GetUsers([FromBody] UserLogin userLogin)
         {
             IActionResult response = Unauthorized();
-            var tokenString = GenerateJSONWebToken(userLogin);
+            var tokenString = ContentHelper.GenerateJSONWebToken(userLogin, _config);
             var user = _usersCommand.AuthenticateUser(userLogin, tokenString);
             return Ok(user);
         }
@@ -137,23 +138,5 @@ namespace FNBStarup.Controllers
             }
         }
         #endregion
-
-        public string GenerateJSONWebToken([FromBody] UserLogin userInfo)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWTSettings:securityKey"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var claims = new[] {
-                 new Claim(JwtRegisteredClaimNames.Email, userInfo.Email),
-                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
-
-            var token = new JwtSecurityToken(_config["JWTSettings:validIssuer"], _config["JWTSettings:validIssuer"],
-                        claims,
-                        expires: DateTime.Now.AddMinutes(120),
-                        signingCredentials: credentials);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
     }
 }

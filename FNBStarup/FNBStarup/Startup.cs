@@ -54,7 +54,7 @@ namespace FNBStarup
                 options.AddDefaultPolicy(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
 
-            AddAuthentication(services);
+            services.AddAuthentication(Configuration.GetSection("JwtSettings"));
 
             services.AddScoped<IRolesCommand, RolesCommand>();
             services.AddScoped<IUsersCommand, UsersCommand>();
@@ -65,6 +65,8 @@ namespace FNBStarup
 
             ServiceExtensions.ConfigureIISIntegration(services);
             ServiceExtensions.ConfigureLoggerService(services);
+
+            services.AddSwaggerDocumentation();
 
 
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -89,6 +91,7 @@ namespace FNBStarup
             }
 
             app.ConfigureCustomExceptionMiddleware();
+            app.UseSwaggerDocumentation();
 
             app.UseCors();
             app.UseHttpsRedirection();
@@ -107,30 +110,6 @@ namespace FNBStarup
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
-        }
-
-        public void AddAuthentication(IServiceCollection services)
-        {
-            var jwtSettings = Configuration.GetSection("JwtSettings");
-            services.AddAuthentication(opt =>
-            {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.SaveToken = true;
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = jwtSettings.GetSection("validIssuer").Value,
-                    ValidAudience = jwtSettings.GetSection("validAudience").Value,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.GetSection("securityKey").Value))
-                };
             });
         }
     }

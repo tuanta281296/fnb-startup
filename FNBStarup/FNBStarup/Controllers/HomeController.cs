@@ -8,6 +8,7 @@ namespace FNBStarup.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class HomeController : Controller
     {
         public IActionResult Index()
