@@ -13,9 +13,7 @@ namespace FNBStarup.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
+            return Redirect("http://milk-tea.local/swagger/index.html");
         }
     }
 }

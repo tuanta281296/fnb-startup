@@ -1,20 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using FNBStarup.Data;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Repository.Command.Interface;
-using Repository.Command.Respository;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.AspNetCore.Http;
@@ -23,6 +12,8 @@ using System;
 using FNBStartup.Extensions;
 using LoggerService;
 using Entities.Data;
+using Repository.Command.Interface;
+using Repository.Command.Respository;
 
 namespace FNBStarup
 {
@@ -56,12 +47,8 @@ namespace FNBStarup
 
             services.AddAuthentication(Configuration.GetSection("JwtSettings"));
 
-            services.AddScoped<IRolesCommand, RolesCommand>();
-            services.AddScoped<IUsersCommand, UsersCommand>();
-            services.AddScoped<IMasterDataCommand, MasterDataCommand>();
-            services.AddScoped<IBranchCommand, BranchesCommand>();
-            services.AddScoped<IPOProductCommand, POProductCommand>();
-            // Add ApplicationDbContext and SQL Server support
+            // Add Scoped Service
+            services.AddScoped();
 
             ServiceExtensions.ConfigureIISIntegration(services);
             ServiceExtensions.ConfigureLoggerService(services);

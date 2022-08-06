@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Repository.Command.Interface;
+using Repository.Command.Respository;
 
 namespace FNBStartup.Extensions
 {
@@ -33,6 +35,18 @@ namespace FNBStartup.Extensions
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.GetSection("securityKey").Value))
                 };
             });
+
+            return services;
+        }
+
+        public static IServiceCollection AddScoped(this IServiceCollection services)
+        {
+            services.AddScoped<IRolesCommand, RolesCommand>();
+            services.AddScoped<IUsersCommand, UsersCommand>();
+            services.AddScoped<IMasterDataCommand, MasterDataCommand>();
+            services.AddScoped<IBranchCommand, BranchesCommand>();
+            services.AddScoped<IPOProductCommand, POProductCommand>();
+            services.AddScoped(typeof(IGenericCommand<>), (typeof(GenericCommand<>)));
 
             return services;
         }
